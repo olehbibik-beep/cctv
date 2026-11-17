@@ -65,6 +65,8 @@
         ['Odeslat zprávu', 'Send message', 'Nachricht senden', 'Отправить сообщение'],
         ['Odesílám zprávu…', 'Sending message…', 'Nachricht wird gesendet…', 'Отправляю сообщение…'],
         ['Zpráva byla odeslána.', 'Message sent.', 'Nachricht gesendet.', 'Сообщение отправлено.'],
+        ['Děkujeme!', 'Thank you!', 'Vielen Dank!', 'Спасибо!'],
+        ['Vaše zpráva byla odeslána týmu GooM.', 'Your message was sent to the GooM team.', 'Ihre Nachricht wurde an das GooM-Team gesendet.', 'Ваше сообщение отправлено команде GooM.'],
         ['Napište zprávu.', 'Enter a message.', 'Geben Sie eine Nachricht ein.', 'Напишите сообщение.'],
         ['Pro odeslání zprávy se přihlaste s ověřeným e-mailem.', 'Sign in with a verified email address to send a message.', 'Melden Sie sich mit einer bestätigten E-Mail-Adresse an, um eine Nachricht zu senden.', 'Войдите в аккаунт с подтверждённой почтой, чтобы отправить сообщение.'],
         ['Před další zprávou počkejte 30 sekund.', 'Wait 30 seconds before sending another message.', 'Warten Sie 30 Sekunden vor der nächsten Nachricht.', 'Подождите 30 секунд перед отправкой следующего сообщения.'],

@@ -89,7 +89,7 @@
         window.clearGoomTooltips?.();
     }
     function enhance(select) {
-        if (widgets.has(select) || select.style.display === 'none' || select.multiple || select.size > 1) return;
+        if (widgets.has(select) || select.hidden || select.style.display === 'none' || select.multiple || select.size > 1) return;
         const wrapper = document.createElement('span');
         wrapper.className = 'ui-select';
         if (select.hasAttribute('data-language-select')) wrapper.classList.add('language-select');

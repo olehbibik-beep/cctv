@@ -102,7 +102,7 @@ body::after {
 .feedback-heading { display: flex; align-items: center; gap: 8px; }
 .feedback-heading .app-dialog-title { margin: 0; }
 .feedback-reply { color: #c4c4cc; font-size: 13px; overflow-wrap: anywhere; }
-.feedback-reply strong { color: #fff; }
+.feedback-reply { color: #d5c9e2; font-weight: 600; }
 #feedbackForm label { display: block; margin: 14px 0 6px; font-size: 13px; }
 #feedbackMessage { margin: 0; min-height: 84px; max-height: 36dvh; resize: vertical; }
 #feedbackStatus { margin: 8px 0; color: #a8db7a; font-size: 13px; }
@@ -110,6 +110,11 @@ body::after {
 #feedbackForm .app-dialog-actions { margin-top: 10px; }
 #btnFeedbackSend { background: #a6dd68; color: #182610; }
 #btnFeedbackSend:disabled { opacity: .5; cursor: default; }
+.feedback-success { padding: 22px 8px 10px; text-align: center; }
+.feedback-success-check { display: grid; place-items: center; width: 58px; height: 58px; margin: 0 auto 16px; border-radius: 50%; background: #38313f; color: #d5c9e2; font-size: 36px; }
+.feedback-success h3 { margin: 0 0 8px; font-size: 21px; }
+.feedback-success p { margin: 0 0 22px; color: #c4c4cc; line-height: 1.5; }
+#btnFeedbackDone { margin: 0 auto; justify-content: center; }
 #cameraOptics { display: grid; grid-template-columns: 1fr minmax(110px, 45%); align-items: center; gap: 10px; border: 0; border-top: 1px solid #414147; margin: 18px 0 0; padding: 10px 0 0; text-align: left; font-size: 13px; }
 #cameraOptics legend { padding: 0 6px; color: #d5c9e2; }
 #cameraOptics input { box-sizing: border-box; width: 100%; padding: 6px; color: inherit; background: #161619; border: 1px solid #565660; border-radius: 5px; }
@@ -121,16 +126,27 @@ body::after {
 .camera-type-list { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
 .camera-type-card { display: grid; justify-items: center; align-content: center; gap: 8px; min-width: 0; min-height: 46px; padding: 10px; border: 1px solid #45464d; border-radius: 8px; background: #24252b; color: #e1e1e6; cursor: pointer; }
 .camera-type-card img { width: 100%; height: clamp(56px, 14vh, 110px); object-fit: contain; }
-.camera-type-card[data-camera-type="cctv_ptz"] { grid-column: 1 / -1; }
+.camera-type-card[data-camera-type="cctv_ptz"] { grid-column: 1 / -1; grid-template-columns: 1fr auto; align-items: center; }
 .camera-type-card[aria-pressed="true"] { border-color: #b6a4cc; background: #34303d; }
 .camera-type-card:focus-visible, #btnCameraPicker:focus-visible { outline: 2px solid #b6a4cc; outline-offset: 2px; }
 .camera-picker-fields { display: grid; gap: 6px; text-align: left; }
-.camera-picker-fields label { color: #d4d4d8; font-size: 13px; }
-.camera-picker-fields select { width: 100%; min-height: 36px; margin-bottom: 8px; }
+.camera-option-group { margin: 0 0 12px; padding: 0; min-width: 0; border: 0; }
+.camera-option-group legend { padding: 0; margin-bottom: 10px; color: #d4d4d8; font-size: 13px; }
+.camera-options { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px 8px; }
+#cameraResolutionOptions { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.camera-option { position: relative; display: flex; align-items: center; gap: 7px; min-height: 28px; color: #d4d4d8; font-size: 12px; cursor: pointer; }
+.camera-option input { position: absolute; width: 1px; height: 1px; opacity: 0; }
+.camera-switch { display: inline-block; position: relative; width: 34px; height: 20px; flex-shrink: 0; border-radius: 12px; background: #55545b; transition: background-color 140ms ease; }
+.camera-switch::after { content: ''; position: absolute; top: 3px; left: 3px; width: 14px; height: 14px; border-radius: 50%; background: #f4f2f6; transition: transform 140ms ease; }
+.camera-option input:checked + .camera-switch, .camera-type-card[aria-pressed="true"] .camera-switch { background: #9b88b4; }
+.camera-option input:checked + .camera-switch::after, .camera-type-card[aria-pressed="true"] .camera-switch::after { transform: translateX(14px); }
+.camera-option input:focus-visible + .camera-switch { outline: 2px solid #d5c9e2; outline-offset: 3px; }
+#cameraLensOptions .camera-option:first-child { grid-column: 1 / -1; }
 #cameraLensSummary { margin: 2px 0; color: #d5c9e2; font-size: 13px; line-height: 1.5; white-space: pre-line; }
 .camera-picker-content .modal-buttons { margin-top: 18px; }
 .camera-picker-content .camera-picker-apply { background: #8e7ba8; color: #fff; }
 @media (max-width: 640px) { .camera-picker-layout { grid-template-columns: 1fr; gap: 14px; } }
+@media (prefers-reduced-motion: reduce) { .camera-switch, .camera-switch::after { transition: none; } }
 [data-goom-product="CCTV"] :is(.pro-period, .pro-price-option, .pro-pricing-footer .account-note) { display: none; }
 .modal-content, .app-dialog-card { position: relative; isolation: isolate; }
 .modal-blueprint-host { position: absolute; inset: 0; z-index: -1; overflow: hidden; border-radius: inherit; pointer-events: none; }

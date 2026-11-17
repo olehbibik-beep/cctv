@@ -51,6 +51,38 @@ function setCameraEditFields(device) {
     let lastType = 'cctv_bullet';
     let cameraType = lastType;
 
+    function syncCameraOptions() {
+        form.querySelectorAll('.camera-options input').forEach(input => {
+            input.checked = input.value === document.getElementById(input.dataset.select).value;
+        });
+    }
+
+    for (const [selectId, containerId] of [['newCameraResolution', 'cameraResolutionOptions'], ['newCameraLens', 'cameraLensOptions']]) {
+        const select = document.getElementById(selectId);
+        const container = document.getElementById(containerId);
+        for (const option of select.options) {
+            const label = document.createElement('label');
+            label.className = 'camera-option';
+            const input = document.createElement('input');
+            input.type = 'radio';
+            input.name = selectId;
+            input.value = option.value;
+            input.dataset.select = selectId;
+            const toggle = document.createElement('span');
+            toggle.className = 'camera-switch';
+            toggle.setAttribute('aria-hidden', 'true');
+            const text = document.createElement('span');
+            text.textContent = option.textContent;
+            input.addEventListener('change', () => {
+                select.value = input.value;
+                select.dispatchEvent(new Event('change', { bubbles: true }));
+            });
+            label.append(input, toggle, text);
+            container.append(label);
+        }
+        select.addEventListener('change', syncCameraOptions);
+    }
+
     function updateSummary() {
         const lens = getCameraLens(lensInput.value);
         const angle = getCameraLensAngle(cameraType, lensInput.value);
@@ -81,6 +113,7 @@ function setCameraEditFields(device) {
         document.getElementById('newCameraResolution').value = String(cameraPlacementOptions.megapixels);
         lensInput.value = type === lastType ? cameraPlacementOptions.lensId : defaultLens(type);
         selectType(type);
+        syncCameraOptions();
         window.refreshGoomSelects?.();
         modal.style.display = 'flex';
         card.focus();
@@ -90,6 +123,7 @@ function setCameraEditFields(device) {
         const type = card.dataset.cameraType;
         if (lensInput.value === defaultLens(cameraType)) lensInput.value = defaultLens(type);
         selectType(type);
+        syncCameraOptions();
         window.refreshGoomSelects?.();
     }));
     lensInput.addEventListener('change', updateSummary);

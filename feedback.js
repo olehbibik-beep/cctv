@@ -5,8 +5,15 @@
     const status = document.getElementById('feedbackStatus');
     const send = document.getElementById('btnFeedbackSend');
     const close = document.getElementById('btnFeedbackClose');
+    const compose = document.getElementById('feedbackCompose');
+    const success = document.getElementById('feedbackSuccess');
     let senderUid;
     let sending = false;
+
+    function resetConfirmation() {
+        compose.hidden = false;
+        success.hidden = true;
+    }
 
     function showStatus(text, error = false) {
         status.textContent = tr(text);
@@ -20,10 +27,9 @@
             message.value = '';
             senderUid = user?.uid;
             showStatus('');
+            resetConfirmation();
         }
         const enabled = Boolean(user?.email && user.emailVerified);
-        document.getElementById('feedbackEmail').textContent = user?.email || '';
-        document.getElementById('feedbackReply').hidden = !enabled;
         message.disabled = sending || !enabled;
         send.disabled = sending || !enabled;
         close.disabled = sending;
@@ -31,10 +37,15 @@
     }
 
     document.getElementById('btnOpenFeedback').addEventListener('click', () => {
+        if (!success.hidden) {
+            resetConfirmation();
+            showStatus('');
+        }
         updateSender();
         dialog.showModal();
     });
     close.addEventListener('click', () => dialog.close());
+    document.getElementById('btnFeedbackDone').addEventListener('click', () => dialog.close());
     dialog.addEventListener('cancel', event => { if (sending) event.preventDefault(); });
     dialog.addEventListener('keydown', event => event.stopPropagation());
     message.addEventListener('input', () => showStatus(''));
@@ -68,7 +79,10 @@
             });
             if (window.getFirebaseUser()?.uid !== user.uid) return;
             message.value = '';
-            showStatus('Zpráva byla odeslána.');
+            showStatus('');
+            compose.hidden = true;
+            success.hidden = false;
+            document.getElementById('btnFeedbackDone').focus();
         } catch (error) {
             if (window.getFirebaseUser()?.uid !== user.uid) return;
             showStatus(error.message === 'feedback-cooldown'
