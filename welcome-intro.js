@@ -29,9 +29,9 @@
         play.hidden = true;
         video.hidden = false;
         video.muted = true;
-        video.defaultPlaybackRate = 0.5;
-        video.playbackRate = 0.5;
-        video.src = 'Intro.mp4?v=20261117-cctv-63';
+        video.defaultPlaybackRate = 1;
+        video.playbackRate = 1;
+        video.src = 'Intro.mp4?v=20261117-cctv-64';
         video.load();
         video.currentTime = 0;
         video.play().catch(error => { if (error.name !== 'AbortError') playbackFailed(); });
@@ -39,7 +39,7 @@
     video.addEventListener('loadedmetadata', () => {
         if (video.hidden) return;
         video.currentTime = 0;
-        video.playbackRate = 0.5;
+        video.playbackRate = 1;
     });
     video.addEventListener('playing', () => {
         if (!video.hidden) welcome.classList.add('is-intro-playing');
