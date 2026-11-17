@@ -50,7 +50,7 @@ const isBuiltInToolbarMenu = menu => builtInToolbarMenus.some(preset => preset.i
 const isPremiumToolbarId = id => typeof id === 'string' && id.startsWith('shared-');
 const isPersonalToolbarMenu = menu => !isBuiltInToolbarMenu(menu) && !isPremiumToolbarId(menu.id);
 const personalToolbarMenuCount = () => toolbarMenus.filter(isPersonalToolbarMenu).length;
-const canEditToolbarMenus = () => Boolean(window.hasProAccess?.() || window.hasAdminAccess?.());
+const canEditToolbarMenus = () => Boolean(window.hasProAccess?.());
 const canEditToolbarPreset = menu => Boolean(menu && canEditToolbarMenus()
     && (isPersonalToolbarMenu(menu) || window.hasAdminAccess?.()));
 

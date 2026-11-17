@@ -24,7 +24,7 @@
                 maximumFractionDigits: currency === 'CZK' ? 0 : 2 }).format(value);
             price.textContent = formatted;
         }
-        document.getElementById('btnOpenToolbarMenuEditor').classList.toggle('pro-lock', !active && !window.hasAdminAccess?.());
+        document.getElementById('btnOpenToolbarMenuEditor').classList.toggle('pro-lock', !active);
     }
     window.requestProUpgrade = () => {
         if (!window.getFirebaseUser()) { showWelcomeScreen(); return; }
