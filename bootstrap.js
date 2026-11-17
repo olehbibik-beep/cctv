@@ -1,6 +1,6 @@
 (() => {
     // Change this version whenever publishing application files together.
-    const version = '20261117-cctv-62';
+    const version = '20261117-cctv-63';
     let started = false;
     function loadScript(src) {
         return new Promise((resolve, reject) => {
