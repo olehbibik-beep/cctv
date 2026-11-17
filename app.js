@@ -203,7 +203,7 @@ if(hBtn) hBtn.addEventListener('click', () => { document.getElementById('helpPan
 
 document.getElementById('deviceSelector').addEventListener('click', (e) => {
     const btn = e.target.closest('.device-btn');
-    if(!btn || btn.id === 'btnToggleConnections') return;
+    if (!btn?.dataset.type) return;
     
     document.querySelectorAll('.device-btn').forEach(b => b.classList.remove('active')); 
     btn.classList.add('active');
@@ -299,7 +299,7 @@ if(btnMenuOpenBIPS) {
         document.getElementById('mainMenuModal').style.display = 'none'; 
         if (window.showOpenFilePicker) {
             try {
-                const [handle] = await window.showOpenFilePicker({ types: [{ description: 'TECH Projekt', accept: {'application/json': ['.tech', '.bips']} }] });
+                const [handle] = await window.showOpenFilePicker({ types: [{ description: tr('Projekt CCTV'), accept: { 'application/json': PROJECT_FILE_EXTENSIONS } }] });
                 currentFileHandle = handle; const file = await handle.getFile(); importFileContent(file);
             } catch (e) {} 
         } else { document.getElementById('bipsLoader').click(); }
@@ -318,7 +318,7 @@ function exportToPDF() { return exportPlanFile('pdf'); }
 document.getElementById('btnMenuPrint').addEventListener('click', () => {
  document.getElementById('mainMenuModal').style.display = 'none'; void printPlanDirect();
 });
-document.getElementById('btnExportBIPS').addEventListener('click', () => { exportToTECH(); saveModal.style.display='none'; });
+document.getElementById('btnExportBIPS').addEventListener('click', () => { downloadProjectFile(); saveModal.style.display='none'; });
 for (const [id,format] of [['btnExportPNG','png'],['btnExportPDF','pdf'],['btnExportSVG','svg'],['btnExportJPEG','jpeg']]) {
  document.getElementById(id).addEventListener('click', () => exportPlanFile(format));
 }
@@ -483,7 +483,7 @@ window.addEventListener('keydown', (e) => {
         if (modalClosed) { editingDevice = null; pendingTextFloor = null; return; }
         clearDetectorSearchHighlight();
         selectedTool = 'select';
-        document.querySelectorAll('#deviceSelector .device-btn[data-type]').forEach(b => b.classList.remove('active'));
+        document.querySelectorAll('#deviceSelector .device-btn.active').forEach(b => b.classList.remove('active'));
         activeDeviceIds.clear();
         clearCanvasDrag();
         requestRedraw(); return; 
@@ -508,7 +508,7 @@ window.addEventListener('keydown', (e) => {
             activeDeviceIds.forEach(id => {
                 let dev = floor.devices.find(d => d.id === id);
                 if (dev && !independentDeviceNumberTypes.has(dev.type) && !['panel', 'textNode', 'ramen'].includes(dev.type)) {
-                    if (dev.type === 'deactivated') { dev.type = dev.oldType || 'pir'; } else { dev.oldType = dev.type; dev.type = 'deactivated'; }
+                    if (dev.type === 'deactivated') { dev.type = dev.oldType || (APP_PRODUCT === 'CCTV' ? 'cctv_bullet' : 'pir'); } else { dev.oldType = dev.type; dev.type = 'deactivated'; }
                     changed = true;
                 }
             });
@@ -889,6 +889,9 @@ window.addEventListener('pointerup', (e) => {
                 const newId = genId(); const loopId = parseInt(loopSelect.value);
                 
                 let tempDev = { id: newId, x: snap.x, y: snap.y, type: selectedTool, manualName: "", loopId: loopId, rotation: 0, manualNumber: null };
+                if (APP_PRODUCT === 'CCTV' && Object.hasOwn(CCTV_CAMERAS, selectedTool)) {
+                    Object.assign(tempDev, cameraPlacementOptions);
+                }
                 if (selectedTool === 'plainText' || selectedTool === 'textNode') {
                     tempDev.type = 'textNode';
                     if (selectedTool === 'plainText') tempDev.plainText = true;
@@ -1141,7 +1144,7 @@ async function initProject() {
                 if (!window.getFirebaseUser?.()) { showWelcomeScreen(); return; }
                 if (window.showOpenFilePicker) {
                     try {
-                        const [handle] = await window.showOpenFilePicker({ types: [{ description: 'TECH Projekt', accept: {'application/json': ['.tech', '.bips']} }] });
+                        const [handle] = await window.showOpenFilePicker({ types: [{ description: tr('Projekt CCTV'), accept: { 'application/json': PROJECT_FILE_EXTENSIONS } }] });
                         const file = await handle.getFile();
                         if (await importFileContent(file)) currentFileHandle = handle;
                     } catch (error) {
@@ -1306,7 +1309,7 @@ function importFileContent(file, options = {}) {
             if (data && data.projectName) {
                 projectName = data.projectName;
             } else {
-                projectName = (file && file.name) ? file.name.replace(/\.(tech|bips)$/i, '') : tr("Obnovený projekt");
+                projectName = (file && file.name) ? stripProjectFileExtension(file.name) : tr("Obnovený projekt");
             }
             
             let pInput = document.getElementById('projectNameInput');
@@ -1331,7 +1334,7 @@ function importFileContent(file, options = {}) {
 
         } catch (err) { 
             console.error("Chyba importu:", err);
-            showAppAlert(tr("Chyba při načítání souboru .TECH!\n\nDetail chyby: ") + err.message, tr('Ошибка открытия проекта')); 
+            showAppAlert(tr('Soubor projektu se nepodařilo otevřít.') + '\n\n' + err.message, tr('Ошибка открытия проекта')); 
             isSystemReady = wasSystemReady;
             requestRedraw(); 
             resolve(false);
@@ -1379,6 +1382,7 @@ function openNumberModal(dev) {
     inp.value = (optics ? dev.manualNumber : dev.manualNumber || dev.number) || '';
     document.getElementById('cameraOptics').hidden = !optics;
     if (optics) {
+        setCameraEditFields(dev);
         document.getElementById('cameraAngle').value = optics.angle;
         document.getElementById('cameraRange').value = optics.range;
     }
@@ -1458,6 +1462,12 @@ if (btnSaveNumber) {
                 const angle = document.getElementById('cameraAngle');
                 const range = document.getElementById('cameraRange');
                 if (!angle.reportValidity() || !range.reportValidity()) return;
+                const type = document.getElementById('editCameraType').value;
+                if (type !== editingDevice.type && Object.hasOwn(CCTV_CAMERAS, type)) {
+                    editingDevice.type = type;
+                    includeNewDeviceInLegend(floors[currentFloorIndex], type);
+                }
+                Object.assign(editingDevice, readCameraFields('editCamera'));
                 editingDevice.cameraAngle = angle.valueAsNumber;
                 editingDevice.cameraRange = range.valueAsNumber;
             }

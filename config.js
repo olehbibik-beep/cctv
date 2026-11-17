@@ -31,6 +31,21 @@ const CCTV_CAMERAS = {
     cctv_dome: { label: 'Kopulová kamera', angle: 100, range: 220 },
     cctv_ptz: { label: 'PTZ kamera', angle: 45, range: 450 }
 };
+const CCTV_CAMERA_LENSES = [
+    { id: '2.8', label: '2.8 mm', fov: [100, 110], ranges: [6, 12, 60] },
+    { id: '3.6-4', label: '3.6 / 4 mm', fov: [80, 90], ranges: [8, 16, 80] },
+    { id: '6', label: '6 mm', fov: [50, 55], ranges: [12, 24, 120] },
+    { id: '8', label: '8 mm', fov: [35, 40], ranges: [16, 32, 160] },
+    { id: '12', label: '12 mm', fov: [20, 25], ranges: [24, 48, 240] }
+];
+const CCTV_CAMERA_RESOLUTIONS = [2, 4, 8];
+function getCameraLens(id) {
+    return CCTV_CAMERA_LENSES.find(lens => lens.id === id);
+}
+function getCameraLensAngle(type, lensId) {
+    const lens = getCameraLens(lensId);
+    return lens ? Math.round((lens.fov[0] + lens.fov[1]) / 2) : CCTV_CAMERAS[type].angle;
+}
 const CCTV_DEVICE_LABELS = {
     ...Object.fromEntries(Object.entries(CCTV_CAMERAS).map(([type, camera]) => [type, camera.label])),
     cctv_nvr: 'Síťový videorekordér (NVR)',
@@ -64,7 +79,7 @@ function getCameraOptics(device) {
     if (!Object.hasOwn(CCTV_CAMERAS, device.type)) return null;
     const defaults = CCTV_CAMERAS[device.type];
     return {
-        angle: Number.isFinite(device.cameraAngle) ? Math.min(180, Math.max(10, Math.round(device.cameraAngle))) : defaults.angle,
+        angle: Number.isFinite(device.cameraAngle) ? Math.min(180, Math.max(10, Math.round(device.cameraAngle))) : getCameraLensAngle(device.type, device.lensId),
         range: Number.isFinite(device.cameraRange) ? Math.min(1000, Math.max(10, Math.round(device.cameraRange))) : defaults.range
     };
 }

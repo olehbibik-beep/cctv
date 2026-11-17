@@ -2,6 +2,14 @@
 // 4. STORAGE: DATABÁZE A HISTORIE
 // ==========================================
 
+const PROJECT_FILE_EXTENSION = '.cctv';
+const PROJECT_FILE_EXTENSIONS = [PROJECT_FILE_EXTENSION, '.tech', '.bips'];
+
+function stripProjectFileExtension(name) {
+    const extension = PROJECT_FILE_EXTENSIONS.find(ext => name.toLowerCase().endsWith(ext));
+    return extension ? name.slice(0, -extension.length) : name;
+}
+
 function sanitizeFloors(floorDataArray) {
     if (!Array.isArray(floorDataArray)) return []; 
     
@@ -213,11 +221,14 @@ async function loadFromDB(options={}) {
     return true;
 }
 
-function exportToTECH() {
+function downloadProjectFile() {
     if(!floors.length){showAppAlert(tr('Žádná data k exportu.'),tr('Экспорт проекта'));return;}
     try{
-        const blob=new Blob([JSON.stringify(getProjectDataPayload())],{type:'application/json;charset=utf-8'});
+        const payload = { ...getProjectDataPayload(), format: 'CCTV' };
+        const blob=new Blob([JSON.stringify(payload)],{type:'application/json;charset=utf-8'});
         const url=URL.createObjectURL(blob),link=document.createElement('a');link.href=url;
-        link.download=(projectName||'projekt')+'.TECH';link.click();setTimeout(()=>URL.revokeObjectURL(url),60000);
+        link.download = (stripProjectFileExtension(projectName || '') || 'projekt') + PROJECT_FILE_EXTENSION;
+        link.click();
+        setTimeout(() => URL.revokeObjectURL(url), 60000);
     }catch(error){console.error(error);showAppAlert(tr('Chyba při generování exportu.'),tr('Ошибка экспорта'));}
 }

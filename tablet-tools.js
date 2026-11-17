@@ -3,7 +3,7 @@
     let tabletInput = matchMedia('(pointer: coarse)').matches;
     let previousState = '';
     const labels = {
-        select: 'Výběr detektoru', pan: 'Posun plánu', duplicate: 'Duplikovat',
+        select: APP_PRODUCT === 'CCTV' ? 'Výběr zařízení' : 'Výběr detektoru', pan: 'Posun plánu', duplicate: 'Duplikovat',
         note: 'Poznámka', address: 'Adresa prvku', delete: 'Odstranit vybrané', undo: 'Vrátit akci'
     };
     function selected() { return floors[currentFloorIndex]?.devices.filter(device => activeDeviceIds.has(device.id)) || []; }

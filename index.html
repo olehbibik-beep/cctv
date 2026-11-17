@@ -1,11 +1,22 @@
 <!DOCTYPE html>
-<html lang="cs">
+<html lang="cs" data-goom-product="CCTV">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GOOM</title>
+    <title>GooM CCTV</title>
     <link rel="icon" type="image/png" href="Logo2.png?v=20261115-35">
-    <script src="i18n.js?v=20261117-cctv-54"></script>
+    <script>
+        (() => {
+            window.goomProduct = 'CCTV';
+            if (location.hostname === 'cctv.five.surf' && location.protocol === 'http:') {
+                const secureUrl = new URL(location.href);
+                secureUrl.protocol = 'https:';
+                secureUrl.port = '';
+                location.replace(secureUrl.href);
+            }
+        })();
+    </script>
+    <script src="i18n.js?v=20261117-cctv-57"></script>
     <script src="device-support.js?v=20261114-loading-27"></script>
     <style>
         :root {
@@ -104,7 +115,7 @@
         .arrow-tab.open svg { transform: rotate(180deg); }
         .arrow-tab.open { background: #0ea5e9; color: #ffffff; }
         
-        /* Специфичные стили для светлого тулбара датчиков */
+        /* Device toolbar on a light background. */
         .sliding-row-container .device-selector-group { 
             background: #ffffff; border: 1px solid #e4e4e7; box-shadow: 0 2px 10px rgba(0,0,0,0.05); 
         }
@@ -452,7 +463,7 @@
 
 
     </style>
-    <link rel="stylesheet" href="ui-theme.css?v=20261117-cctv-54">
+    <link rel="stylesheet" href="ui-theme.css?v=20261117-cctv-57">
 </head>
 <body>
     <div id="deviceSupportNotice" role="alert">
@@ -466,7 +477,7 @@
         <div class="plan-loading-disc" aria-hidden="true"><img src="Logo.png" alt="" fetchpriority="high"></div>
     </div>
 
-    <input type="file" id="bipsLoader" accept=".tech,.bips" style="display:none;">
+    <input type="file" id="bipsLoader" accept=".cctv,.tech,.bips" style="display:none;">
     <input type="file" id="imageLoader" accept="image/*, application/pdf, .dxf" style="display:none;">
 
     <div class="toolbar">
@@ -477,7 +488,7 @@
                     <img src="Link.png" class="menu-logo-default" alt="">
                     <img src="Link2.png" class="menu-logo-hover" alt="">
                 </button>
-                <span class="app-brand-name">GooM</span>
+                <span class="app-brand-name">GooM CCTV</span>
             </div>
 
             <div class="menu-divider" style="height: 20px;"></div>
@@ -491,13 +502,13 @@
 
             <div class="toolbar-section" style="margin-left: auto; gap: 12px;">
                 <div class="setting-col">
-                    <svg viewBox="0 0 24 24" aria-hidden="true" style="width:18px;height:18px;fill:none;stroke:#8d8d99;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round;" title="Velikost ikon detektorů">
+                    <svg viewBox="0 0 24 24" aria-hidden="true" style="width:18px;height:18px;fill:none;stroke:#8d8d99;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round;" title="Velikost ikon kamer">
                         <path d="M4 8V4h4M20 8V4h-4M4 16v4h4M20 16v4h-4M8 8l-4-4M16 8l4-4M8 16l-4 4M16 16l4 4"></path>
                     </svg>
                     <input type="range" id="deviceSizeSlider" min="8" max="70" value="16" style="width: 80px; cursor: pointer;" title="Změnit velikost všech značek">
                 </div>
                 <div class="setting-col">
-                    <button id="togglePirCoverage" class="toolbar-icon-button" type="button" aria-pressed="true" title="Skrýt zóny PIR" aria-label="Skrýt zóny PIR">
+                    <button id="togglePirCoverage" class="toolbar-icon-button" type="button" aria-pressed="true" title="Skrýt zorná pole" aria-label="Skrýt zorná pole">
                         <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 12s3.2-6 9-6 9 6 9 6-3.2 6-9 6-9-6-9-6Z"></path><circle cx="12" cy="12" r="2.3"></circle><path d="M12 9.7V4"></path></svg>
                     </button>
                 </div>
@@ -511,13 +522,13 @@
                 <button id="btnToggleLegend" class="toolbar-icon-button" type="button" aria-pressed="false" title="Zobrazit legendu" aria-label="Zobrazit legendu">
                     <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5h12M9 12h12M9 19h12"/><circle cx="4" cy="5" r="1"/><circle cx="4" cy="12" r="1"/><circle cx="4" cy="19" r="1"/></svg>
                 </button>
-                <button id="btnDetectionSettings" class="toolbar-icon-button" type="button" title="Nastavit stěny a dosah PIR" aria-label="Nastavit stěny a dosah PIR">
+                <button id="btnDetectionSettings" class="toolbar-icon-button" type="button" title="Rozpoznání stěn a zorná pole" aria-label="Rozpoznání stěn a zorná pole">
                     <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 20V5l6-2v15l6 2 6-2V3"></path><path d="M9 3l6 2M15 5v15M4 10l4-1M16 12l2-1M16 16l2-1"></path></svg>
                 </button>
                 <button id="btnOpenToolbarMenuEditor" class="toolbar-icon-button" type="button" title="Upravit nabídky a ikony" aria-label="Upravit nabídky a ikony">
                     <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5h10M18 5h2M4 12h2M10 12h10M4 19h10M18 19h2"></path><circle cx="16" cy="5" r="2"></circle><circle cx="8" cy="12" r="2"></circle><circle cx="16" cy="19" r="2"></circle></svg>
                 </button>
-                <button id="btnDetectorSearch" class="toolbar-icon-button" type="button" title="Najít detektor" aria-label="Najít detektor" aria-haspopup="dialog" hidden>
+                <button id="btnDetectorSearch" class="toolbar-icon-button" type="button" title="Najít kameru" aria-label="Najít kameru" aria-haspopup="dialog" hidden>
                     <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m16 16 4 4"/></svg>
                 </button>
             </div>
@@ -533,35 +544,15 @@
                     <button id="btnCycleToolbarMenu" class="btn-cad toolbar-menu-cycle" type="button" data-menu-id="default" aria-label="Přepnout sadu nabídek">
                         <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><circle cx="12" cy="5" r="2"/><circle cx="12" cy="12" r="2"/><circle cx="12" cy="19" r="2"/></svg>
                     </button>
-                    <select id="loopSelect" style="margin: 0 4px; width: 128px;" title="Vyberte Sběrnici"></select>
+                    <select id="loopSelect" style="margin: 0 4px; width: 128px;" title="Vyberte skupinu kamer"></select>
                     <div class="device-set-window"><div class="device-set-tools" id="deviceSetTools">
 
-                    <button class="device-btn" data-type="panel" title="Ústředna EZS"><svg width="24" height="24" viewBox="0 0 32 32"><rect x="1" y="8" width="30" height="16" fill="#ffffff" stroke="#0ea5e9" stroke-width="2"/><text x="16" y="19" font-size="9" fill="#0ea5e9" font-family="monospace" font-weight="bold" text-anchor="middle">EZS</text></svg></button>
-                    <button class="device-btn" data-type="expander" title="Expandér zón/výstupů (EXP)"><svg width="24" height="24" viewBox="0 0 32 32"><rect x="4" y="4" width="24" height="24" fill="#ffffff" stroke="#0ea5e9" stroke-width="2"/><text x="16" y="20" font-size="9" fill="#0ea5e9" font-family="monospace" font-weight="bold" text-anchor="middle">EXP</text></svg></button>
-                    <button class="device-btn" data-type="abax" title="Bezdrátový modul ABAX2"><svg width="24" height="24" viewBox="0 0 32 32"><rect x="2" y="4" width="21" height="24" fill="#ffffff" stroke="#0ea5e9" stroke-width="2"/><text x="12.5" y="19" font-size="7" fill="#0ea5e9" font-family="monospace" font-weight="bold" text-anchor="middle">ABAX2</text><path d="M26,11 A5,5 0 0,1 26,21 M30,8 A9,9 0 0,1 30,24" fill="none" stroke="#0ea5e9" stroke-width="1.5"/></svg></button>
-                    
+                    <div id="cameraPresetTools" hidden></div>
+                    <button id="btnCameraPicker" class="device-btn" type="button" title="Vybrat typ kamery" aria-haspopup="dialog" aria-controls="cameraSettingsModal">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="5" width="14" height="14" rx="3"/><path d="m16 10 6-4v12l-6-4"/><circle cx="9" cy="12" r="3"/></svg>
+                        <span>Kamera</span>
+                    </button>
                     <div class="menu-divider"></div>
-                    <button class="device-btn" data-type="keypad" title="Klávesnice EZS"><svg width="24" height="24" viewBox="0 0 32 32"><rect x="6" y="6" width="20" height="20" fill="#ffffff" stroke="#52525b" stroke-width="2"/><polygon points="6,26 26,6 26,26" fill="#52525b"/></svg></button>
-                    <div class="menu-divider"></div>
-                    
-                    <button class="device-btn" data-type="pir" title="Prostorový PIR detektor"><svg width="24" height="24" viewBox="0 0 32 32"><path d="M28,16 L10,6 A20,20 0 0,0 10,26 Z" fill="#ffffff" stroke="#22c55e" stroke-width="2"/><line x1="2" y1="6" x2="7" y2="9" stroke="#22c55e" stroke-width="2"/><line x1="0" y1="16" x2="5" y2="16" stroke="#22c55e" stroke-width="2"/><line x1="2" y1="26" x2="7" y2="23" stroke="#22c55e" stroke-width="2"/></svg></button>
-                    
-                    <button class="device-btn" data-type="pir_wl" title="Bezdrátový PIR detektor"><svg width="24" height="24" viewBox="0 0 32 32"><path d="M28,16 L10,6 A20,20 0 0,0 10,26 Z" fill="#ffffff" stroke="#22c55e" stroke-width="2"/><line x1="2" y1="6" x2="7" y2="9" stroke="#22c55e" stroke-width="2"/><line x1="0" y1="16" x2="5" y2="16" stroke="#22c55e" stroke-width="2"/><line x1="2" y1="26" x2="7" y2="23" stroke="#22c55e" stroke-width="2"/><path d="M22,12 A6,6 0 0,0 22,20 M16,8 A12,12 0 0,0 16,24" fill="none" stroke="#22c55e" stroke-width="1.5"/></svg></button>
-                    
-                    <button class="device-btn" data-type="magnet" title="Magnetický kontakt"><svg width="24" height="24" viewBox="0 0 32 32"><rect x="10" y="10" width="12" height="12" fill="#ffffff" stroke="#ef4444" stroke-width="3"/></svg></button>
-                    
-                    <button class="device-btn" data-type="magnet_wl" title="Bezdrátový Magnetický kontakt"><svg width="24" height="24" viewBox="0 0 32 32"><rect x="4" y="10" width="10" height="10" fill="#ffffff" stroke="#ef4444" stroke-width="2.5"/><path d="M16,12 A4,4 0 0,1 16,18 M20,9 A7,7 0 0,1 20,21" fill="none" stroke="#ef4444" stroke-width="1.5"/></svg></button>
-                    
-                    <button class="device-btn" data-type="glassbreak" title="Detektor tříštění skla"><svg width="24" height="24" viewBox="0 0 32 32"><path d="M16,16 L25,7 A12,12 0 1,0 25,25 Z" fill="#ffffff" stroke="#22c55e" stroke-width="2"/><line x1="16" y1="16" x2="28" y2="16" stroke="#22c55e" stroke-width="2"/></svg></button>
-                    
-                    <button class="device-btn" data-type="panic" title="Tísňové tlačítko (PANIC)"><svg width="24" height="24" viewBox="0 0 32 32"><rect x="6" y="6" width="20" height="20" rx="3" ry="3" fill="#ffffff" stroke="#ef4444" stroke-width="2"/><circle cx="16" cy="16" r="5" fill="#ef4444"/></svg></button>
-                    <button class="device-btn" data-type="siren" title="Siréna"><svg width="24" height="24" viewBox="0 0 32 32"><path d="M8 12 h6 l8 -8 v24 l-8 -8 h-6 z" fill="#ffffff" stroke="#ef4444" stroke-width="2"/><path d="M26 12 Q28 16 26 20" fill="none" stroke="#ef4444" stroke-width="2"/></svg></button>
-                    <button class="device-btn" data-type="acs_module" title="Modul přístupového systému (ACS)" aria-label="Modul přístupového systému (ACS)">ACS</button>
-                    <button class="device-btn" data-type="acs_reader" title="Čtečka přístupového systému (ACS)" aria-label="Čtečka přístupového systému (ACS)">ACS</button>
-                    <button class="device-btn" data-type="smoke" title="Kouřový hlásič" aria-label="Kouřový hlásič">SD</button>
-                    
-                    <div class="menu-divider"></div>
-                    
                     <div id="textTools" class="text-tools" role="group" aria-label="Text a poznámky">
                         <button class="device-btn" type="button" data-type="plainText" title="Přidat text na výkres" aria-label="Přidat text na výkres">Abc</button>
                         <button class="device-btn" type="button" data-type="textNode" title="Přidat textovou poznámku" aria-label="Přidat textovou poznámku">Abc*</button>
@@ -612,8 +603,8 @@
             </div>
             <div class="welcome-panel">
                 <div class="welcome-identity">
-                    <div class="welcome-brand">PZTS</div>
-                    <p class="welcome-system-name">Poplachový zabezpečovací a tísňový systém</p>
+                    <div class="welcome-brand">CCTV</div>
+                    <p class="welcome-system-name">Kamerový systém</p>
                 </div>
                 <div class="welcome-step-content">
                 <div id="welcomeAuthBlock" class="welcome-actions">
@@ -661,7 +652,7 @@
                     </button>
                     <button id="btnWelcomeOpenBIPS" class="btn-cad" style="background: #cbd5e1; color: #0f0f11; font-weight: bold; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); border: none;">
                         <svg viewBox="0 0 24 24" fill="none" stroke="#0f0f11" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="width:18px; height:18px; margin-right:10px;"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path></svg>
-                        Otevřít projekt (.TECH)
+                        Otevřít projekt (.cctv)
                     </button>
                 </div>
 
@@ -760,7 +751,7 @@
                         <div class="pro-plan-actions"><button class="btn-cad pro-plan-action" type="button" disabled>Aktivní</button></div>
                         <ul class="pro-plan-features" role="list">
                             <li>Import a úpravy výkresů</li>
-                            <li>Místní uložení projektů .TECH</li>
+                            <li>Místní uložení projektů .cctv</li>
                             <li>Export a tisk s vodoznakem</li>
                             <li>Světlý a tmavý výkres</li>
                             <li>Průvodce prvním projektem</li>
@@ -788,7 +779,7 @@
                             <li>Sada nástrojů PROJECT</li>
                             <li>Editor nabídek a ikon</li>
                             <li>Až 5 projektů v cloudu</li>
-                            <li>Vyhledávání detektorů ve všech podlažích</li>
+                            <li>Vyhledávání kamer ve všech podlažích</li>
                             <li>Výstupy bez vodoznaku</li>
                         </ul>
                     </div>
@@ -882,7 +873,7 @@
                 </button>
                 <button id="btnMenuOpenBIPS" class="btn-cad" style="width: 100%; justify-content: flex-start; background: #cbd5e1; color: #0f0f11; font-weight: bold;">
                     <svg viewBox="0 0 24 24" fill="none" stroke="#0f0f11" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path></svg>
-                    Otevřít projekt (.TECH)
+                    Otevřít projekt (.cctv)
                 </button>
                 <button id="btnMenuLoadImg" class="btn-cad" style="width: 100%; justify-content: flex-start;">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><circle cx="8.5" cy="8.5" r="1.5"></circle><polyline points="21 15 16 10 5 21"></polyline></svg>
@@ -907,13 +898,13 @@
         <div class="modal-content detector-search-card" role="dialog" aria-modal="true" aria-labelledby="detectorSearchTitle">
             <div class="detector-search-header">
                 <button id="btnCloseDetectorSearch" class="icon-editor-close" type="button" aria-label="Zavřít">×</button>
-                <h2 id="detectorSearchTitle">Najít detektor</h2>
+                <h2 id="detectorSearchTitle">Najít kameru</h2>
             </div>
             <form id="detectorSearchForm" class="detector-search-form">
-                <label for="detectorSearchBus">Sběrnice
+                <label for="detectorSearchBus">Skupina
                     <input id="detectorSearchBus" type="number" min="1" step="1" inputmode="numeric" required>
                 </label>
-                <label for="detectorSearchNumber">Číslo detektoru
+                <label for="detectorSearchNumber">Číslo kamery
                     <input id="detectorSearchNumber" type="number" min="1" step="1" inputmode="numeric" required>
                 </label>
                 <button class="btn-cad" type="submit">Najít</button>
@@ -924,7 +915,7 @@
     </div>
     <div id="detectionSettingsModal" class="modal">
         <div class="modal-content" style="max-width: 430px;">
-            <div class="modal-title">Rozpoznání stěn a PIR</div>
+            <div class="modal-title">Rozpoznání stěn a zorná pole</div>
             <label class="setting-label" for="planThemeInput">Zobrazení výkresu</label>
             <select id="planThemeInput" style="width:100%;margin:8px 0 16px"><option value="dark">Bílé čáry na tmavém pozadí</option><option value="original">Původní výkres</option></select>
             <div class="wall-sensitivity-heading"><label class="setting-label" for="wallThresholdInput">Citlivost rozpoznání stěn</label><output id="wallSensitivityValue" for="wallThresholdInput">39 %</output></div>
@@ -946,7 +937,7 @@
                 <span>Editor nabídek a ikon</span>
             </div>
             <div class="toolbar-menu-list-shell">
-                <div class="toolbar-menu-presets" id="toolbarMenuPresets" aria-label="Nabídky a detektory k úpravě">
+                <div class="toolbar-menu-presets" id="toolbarMenuPresets" aria-label="Nabídky a zařízení k úpravě">
                 </div>
             </div>
             <select id="iconEditorTarget" aria-label="Typ zařízení pro ikonu" style="display:none;"></select>
@@ -960,7 +951,7 @@
                     <button id="btnToolbarMenuSave" class="btn-cad" type="button" style="background:#22c55e;color:#121214;font-weight:bold;">Uložit nabídku</button>
                 </div>
             </div>
-            <strong id="iconEditorCurrentType" style="display:block;color:#d4d4d8;font-size:12px;margin:0 0 6px;">Ikona detektoru</strong>
+            <strong id="iconEditorCurrentType" style="display:block;color:#d4d4d8;font-size:12px;margin:0 0 6px;">Ikona zařízení</strong>
             <div class="icon-editor-layout">
                 <div>
                     <div class="icon-editor-canvas-wrap">
@@ -1047,13 +1038,13 @@
                 <div class="plan-output-options">
                     <div class="modal-text">Celé podlaží, nezávisle na přiblížení obrazovky.</div>
                     <div class="plan-output-actions">
-                        <button id="btnExportBIPS" class="btn-cad output-project" type="button"><svg class="project-location-icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="13" rx="2"/><path d="M8 21h8m-4-4v4"/></svg>Uložit Projekt (.TECH)</button>
+                        <button id="btnExportBIPS" class="btn-cad output-project" type="button"><svg class="project-location-icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="13" rx="2"/><path d="M8 21h8m-4-4v4"/></svg>Uložit Projekt (.cctv)</button>
                         <button id="btnExportPNG" class="btn-cad" type="button">PNG</button>
                         <button id="btnExportJPEG" class="btn-cad" type="button">JPG</button>
                         <button id="btnExportSVG" class="btn-cad" type="button">SVG</button>
                         <button id="btnExportPDF" class="btn-cad" type="button">PDF</button>
                     </div>
-                    <p class="plan-output-note">SVG zachová vektorové čáry DXF, detektory a kabely. Fotografie a rastrové plány zůstanou rastrové.</p>
+                    <p class="plan-output-note">SVG zachová vektorové čáry DXF, kamery a kabely. Fotografie a rastrové plány zůstanou rastrové.</p>
                     <p id="outputStatus" role="status" aria-live="polite"></p>
                 </div>
                 <div class="plan-output-preview"><canvas id="outputPreview" aria-label="Náhled celého podlaží"></canvas></div>
@@ -1089,8 +1080,40 @@
         </form>
     </div>
 
+    <div id="cameraSettingsModal" class="modal">
+        <form id="cameraPickerForm" class="modal-content camera-picker-content" role="dialog" aria-modal="true" aria-labelledby="cameraPickerTitle">
+            <h2 id="cameraPickerTitle" class="modal-title">Model kamery</h2>
+            <div class="camera-picker-layout">
+                <div class="camera-type-list" role="group" aria-label="Typ kamery">
+                    <button type="button" class="camera-type-card" data-camera-type="cctv_bullet" aria-pressed="false">
+                        <img src="assets/cctv/Bullet.png" alt="">
+                        <span>Válcová kamera</span>
+                    </button>
+                    <button type="button" class="camera-type-card" data-camera-type="cctv_dome" aria-pressed="false">
+                        <img src="assets/cctv/Domka.png" alt="">
+                        <span>Kopulová kamera</span>
+                    </button>
+                    <button type="button" class="camera-type-card" data-camera-type="cctv_ptz" aria-pressed="false">
+                        <span>PTZ kamera</span>
+                    </button>
+                </div>
+                <div class="camera-picker-fields">
+                    <label for="newCameraResolution">Rozlišení</label>
+                    <select id="newCameraResolution" aria-label="Rozlišení"></select>
+                    <label for="newCameraLens">Ohnisková vzdálenost objektivu</label>
+                    <select id="newCameraLens" aria-label="Ohnisková vzdálenost objektivu"></select>
+                    <p id="cameraLensSummary" aria-live="polite"></p>
+                </div>
+            </div>
+            <div class="modal-buttons">
+                <button class="btn-cad" id="btnCameraSettingsCancel" type="button">Zrušit</button>
+                <button class="btn-cad camera-picker-apply" type="submit">Vybrat kameru</button>
+            </div>
+        </form>
+    </div>
+
     <div id="numberModal" class="modal">
-        <div class="modal-content" style="max-width: 260px; text-align: center; padding: 25px;">
+        <div class="modal-content" style="max-width: 360px; text-align: center; padding: 25px;">
             <div class="modal-title" style="margin-bottom: 5px; justify-content: center;">Adresa prvku</div>
             <div class="modal-text" style="margin-bottom: 20px; font-size: 12px;">Smažte pole pro návrat na "Auto".</div>
 
@@ -1105,6 +1128,12 @@
             <div id="duplicateWarning" style="color: #ef4444; font-size: 13px; font-weight: bold; margin-top: 15px; display: none;">❌ Adresa je obsazena!</div>
             <fieldset id="cameraOptics" hidden>
                 <legend>Kamera a její zorné pole</legend>
+                <label for="editCameraType">Typ kamery</label>
+                <select id="editCameraType" aria-label="Typ kamery"></select>
+                <label for="editCameraResolution">Rozlišení</label>
+                <select id="editCameraResolution" aria-label="Rozlišení"></select>
+                <label for="editCameraLens">Ohnisková vzdálenost objektivu</label>
+                <select id="editCameraLens" aria-label="Ohnisková vzdálenost objektivu"></select>
                 <label for="cameraAngle">Zorný úhel (°)</label>
                 <input id="cameraAngle" type="number" min="10" max="180" step="1" required>
                 <label for="cameraRange">Dosah na výkresu (px)</label>
@@ -1116,7 +1145,8 @@
     <div id="deviceTooltip" class="device-tooltip" style="position: fixed; opacity: 0; pointer-events: none; z-index: 1000;">
         <div id="ttType">Typ prvku</div>
         <div id="ttNumber">Adresa: <strong>-</strong></div>
-        <div id="ttLoop">Sběrnice: 1</div>
+        <div id="ttCameraOptics" hidden></div>
+        <div id="ttLoop" hidden></div>
         <div id="ttName">Poznámka</div>
     </div>
 
@@ -1139,7 +1169,7 @@
                     <section id="overviewFloorDetails" class="overview-floor-details" aria-live="polite">
                         <div class="overview-detail-heading"><strong id="overviewDetailFloor"></strong><span id="overviewDetailPanel"></span></div>
                         <div id="overviewDetailCounts"></div>
-                        <div class="overview-detail-addresses"><span id="overviewZonesLabel" class="overview-detail-zones-label">Adresy zón</span><div id="overviewDetailZones" class="overview-detail-zones" role="region" aria-labelledby="overviewZonesLabel" tabindex="0"></div></div>
+                        <div class="overview-detail-addresses"><span id="overviewZonesLabel" class="overview-detail-zones-label">Adresy kamer</span><div id="overviewDetailZones" class="overview-detail-zones" role="region" aria-labelledby="overviewZonesLabel" tabindex="0"></div></div>
                     </section>
                 </section>
                 <section class="overview-floor-panel"><div class="overview-artwork"><img id="overviewArtwork" src="NP.png?v=20261114-loading-27" alt="Dům, průmyslová budova a věž" loading="lazy" decoding="async"></div><header class="overview-floor-heading"><h3>Podlaží</h3><span>6 NP · 3 PP</span></header><div id="overviewFloors" role="group" aria-label="Vyberte podlaží"></div></section>
@@ -1152,7 +1182,7 @@
             </button>
         </div>
     </div>
-    <div id="tabletDeviceTools" class="tablet-device-tools" role="toolbar" aria-label="Ovládání detektoru" hidden>
+    <div id="tabletDeviceTools" class="tablet-device-tools" role="toolbar" aria-label="Ovládání zařízení" hidden>
         <button type="button" data-tablet-action="select" aria-pressed="false"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m4 3 15 8-7 2-3 7Z"/></svg></button>
         <button type="button" data-tablet-action="pan" aria-pressed="false"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 12V6a1.5 1.5 0 0 1 3 0v4-6a1.5 1.5 0 0 1 3 0v6-5a1.5 1.5 0 0 1 3 0v6-3a1.5 1.5 0 0 1 3 0v6a7 7 0 0 1-7 7h-1c-2 0-3.5-1-4.5-2.5l-3-4.5a1.7 1.7 0 0 1 2.8-2Z"/></svg></button>
         <button type="button" data-tablet-action="duplicate"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="8" y="8" width="12" height="12" rx="2"/><path d="M5 16a2 2 0 0 1-1-2V6a2 2 0 0 1 2-2h8a2 2 0 0 1 2 1"/></svg></button>
@@ -1161,6 +1191,6 @@
         <button type="button" data-tablet-action="delete" class="tool-danger"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M9 7V4h6v3M6 7l1 13h10l1-13m-8 3v7m4-7v7"/></svg></button>
         <button type="button" data-tablet-action="undo"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m9 4-5 5 5 5M4 9h9a6 6 0 0 1 6 6v2"/></svg></button>
     </div>
-    <script src="bootstrap.js?v=20261117-cctv-54"></script>
+    <script src="bootstrap.js?v=20261117-cctv-57"></script>
 </body>
 </html>

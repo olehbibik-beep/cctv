@@ -1,4 +1,4 @@
-/* PZTS: fixed welcome composition and one control language across the editor. */
+/* Fixed welcome composition and shared editor controls. */
 :root { --menu-bg: #292b2e; --menu-line: #515459; --menu-highlight: #fff; --app-edge: 8px; }
 html { background: #d4d5d7; }
 body {
@@ -110,9 +110,27 @@ body::after {
 #feedbackForm .app-dialog-actions { margin-top: 10px; }
 #btnFeedbackSend { background: #a6dd68; color: #182610; }
 #btnFeedbackSend:disabled { opacity: .5; cursor: default; }
-#cameraOptics { display: grid; grid-template-columns: 1fr 68px; align-items: center; gap: 10px; border: 0; border-top: 1px solid #414147; margin: 18px 0 0; padding: 10px 0 0; text-align: left; font-size: 13px; }
+#cameraOptics { display: grid; grid-template-columns: 1fr minmax(110px, 45%); align-items: center; gap: 10px; border: 0; border-top: 1px solid #414147; margin: 18px 0 0; padding: 10px 0 0; text-align: left; font-size: 13px; }
 #cameraOptics legend { padding: 0 6px; color: #b8dff3; }
 #cameraOptics input { box-sizing: border-box; width: 100%; padding: 6px; color: inherit; background: #161619; border: 1px solid #565660; border-radius: 5px; }
+#cameraOptics select { min-width: 0; width: 100%; }
+#btnCameraPicker { gap: 5px; color: #27272a; font: inherit; font-size: 12px; font-weight: 600; }
+.camera-picker-content { width: min(92vw, 690px); max-width: none; max-height: calc(100dvh - 32px); overflow: auto; box-sizing: border-box; }
+.camera-picker-content .modal-title { margin-top: 0; }
+.camera-picker-layout { display: grid; grid-template-columns: minmax(0, 1fr) minmax(190px, .85fr); align-items: center; gap: 24px; }
+.camera-type-list { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+.camera-type-card { display: grid; justify-items: center; align-content: center; gap: 8px; min-width: 0; min-height: 46px; padding: 10px; border: 1px solid #45464d; border-radius: 8px; background: #24252b; color: #e1e1e6; cursor: pointer; }
+.camera-type-card img { width: 100%; height: clamp(56px, 14vh, 110px); object-fit: contain; }
+.camera-type-card[data-camera-type="cctv_ptz"] { grid-column: 1 / -1; }
+.camera-type-card[aria-pressed="true"] { border-color: #38bdf8; background: #153144; }
+.camera-type-card:focus-visible, #btnCameraPicker:focus-visible { outline: 2px solid #38bdf8; outline-offset: 2px; }
+.camera-picker-fields { display: grid; gap: 6px; text-align: left; }
+.camera-picker-fields label { color: #d4d4d8; font-size: 13px; }
+.camera-picker-fields select { width: 100%; min-height: 36px; margin-bottom: 8px; }
+#cameraLensSummary { margin: 2px 0; color: #b8dff3; font-size: 13px; line-height: 1.5; white-space: pre-line; }
+.camera-picker-content .modal-buttons { margin-top: 18px; }
+.camera-picker-content .camera-picker-apply { background: #0e7490; color: #fff; }
+@media (max-width: 640px) { .camera-picker-layout { grid-template-columns: 1fr; gap: 14px; } }
 [data-goom-product="CCTV"] :is(.pro-period, .pro-price-option, .pro-pricing-footer .account-note) { display: none; }
 .modal-content, .app-dialog-card { position: relative; isolation: isolate; }
 .modal-blueprint-host { position: absolute; inset: 0; z-index: -1; overflow: hidden; border-radius: inherit; pointer-events: none; }
@@ -519,6 +537,8 @@ button.btn-cad, .toolbar-icon-button, .device-btn, .footer-icon, .ui-select-trig
 #deviceTooltip { display:flex; flex-direction:row; align-items:center; gap:8px; width:max-content; min-width:0; max-width:220px; padding:8px 10px; border:1px solid #e5e7eb; border-radius:5px; background:#fff; color:#23262a; text-align:left; box-shadow:0 4px 16px #0002; transition:opacity 100ms ease; }
 #deviceTooltip #ttType { font-size:12px; line-height:1.3; font-weight:600; color:#23262a; }
 #deviceTooltip #ttNumber { flex-shrink:0; font-size:11px; padding:2px 5px; border-radius:3px; background:#eceff2; color:#505760; }
+#deviceTooltip:has(#ttCameraOptics:not([hidden])) { flex-wrap:wrap; }
+#deviceTooltip #ttCameraOptics { flex-basis:100%; font-size:11px; color:#505760; }
 #deviceTooltip [hidden] { display:none!important; }
 #btnToggleConnections { box-sizing:border-box; flex:0 0 160px; width:160px; min-width:160px; max-width:160px; height:30px; min-height:30px; padding:4px 8px!important; background:#fff!important; color:#353a41!important; box-shadow:none; border:1px solid transparent; display:grid; grid-template-columns:16px minmax(0,1fr); gap:7px; white-space:nowrap; }
 #btnToggleConnections:hover { background:#f1f2f4!important; }

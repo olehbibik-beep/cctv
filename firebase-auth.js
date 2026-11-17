@@ -199,7 +199,7 @@ if (btnGoogleSignIn) {
         button.textContent = tr('Вход выполняется...');
         try {
             if (location.protocol !== 'https:' && location.hostname !== 'localhost' && location.hostname !== '127.0.0.1') {
-                throw new Error(tr('Google-вход доступен только на сайте с HTTPS или localhost. Откройте GOOM по адресу https://pzts.five.surf/.'));
+                throw new Error(tr('Для входа через Google нужен HTTPS или localhost. Откройте {0}', 'https://cctv.five.surf/'));
             }
             const auth = await getFirebaseAuth();
             const provider = new window.firebase.auth.GoogleAuthProvider();

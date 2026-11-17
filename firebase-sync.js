@@ -51,7 +51,7 @@ function cloudRowDate(project) {
 
 function cloudOperationMessage(error, action) {
     if (error.code === 'goom/cloud-limit' || error.details?.reason === 'project-limit') return tr('V cloudu je už 5 projektů. Nejdříve některý odstraňte.');
-    if (error.code === 'goom/cloud-size' || error.details?.reason === 'project-size') return tr('Cloudový projekt může mít nejvýše 24 MiB. Větší projekt uložte jako soubor .TECH.');
+    if (error.code === 'goom/cloud-size' || error.details?.reason === 'project-size') return tr('Cloudový projekt může mít nejvýše 24 MiB. Větší projekt uložte jako soubor .cctv.');
     if (error.code === 'storage/unauthorized') return tr(action === 'open'
         ? 'Firebase Storage nepovolil otevření tohoto projektu.'
         : 'Firebase Storage nepovolil uložení projektu. Obraťte se na správce.');
@@ -162,7 +162,8 @@ async function openCloudProject(userId, project) {
         generation = chunk.generation;
     } while (offset < size);
     if (!canApply()) return false;
-    const imported = await importFileContent(new File(chunks, `${project.name || 'project'}.TECH`, { type: 'application/json' }), {
+    const filename = stripProjectFileExtension(project.name || 'project') + PROJECT_FILE_EXTENSION;
+    const imported = await importFileContent(new File(chunks, filename, { type: 'application/json' }), {
         canApply
     });
     if (!imported || userId !== cloudUser?.uid) return false;

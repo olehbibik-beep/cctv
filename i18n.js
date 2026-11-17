@@ -2,6 +2,27 @@
 (() => {
     const rows = [
         ['Kamerový systém', 'Video surveillance system', 'Videoüberwachungssystem', 'Система видеонаблюдения'],
+        ['Projekt CCTV', 'CCTV project', 'CCTV-Projekt', 'Проект CCTV'],
+        ['Kamera', 'Camera', 'Kamera', 'Камера'],
+        ['Model kamery', 'Camera model', 'Kameramodell', 'Модель камеры'],
+        ['Typ kamery', 'Camera type', 'Kameratyp', 'Тип камеры'],
+        ['Vybrat typ kamery', 'Choose a camera type', 'Kameratyp auswählen', 'Выбрать тип камеры'],
+        ['Vybrat kameru', 'Select camera', 'Kamera auswählen', 'Выбрать камеру'],
+        ['Rozlišení', 'Resolution', 'Auflösung', 'Разрешение'],
+        ['Ohnisková vzdálenost objektivu', 'Lens focal length', 'Brennweite des Objektivs', 'Фокусное расстояние объектива'],
+        ['Výchozí zorný úhel', 'Default field of view', 'Standard-Sichtwinkel', 'Угол обзора по умолчанию'],
+        ['Nespecifikováno', 'Unspecified', 'Nicht angegeben', 'Не указано'],
+        ['Zorný úhel na výkresu: {0}°', 'Field of view on the plan: {0}°', 'Sichtwinkel im Plan: {0}°', 'Угол обзора на плане: {0}°'],
+        ['Katalogové dosahy při 4 MP: {0} m', 'Catalogue ranges at 4 MP: {0} m', 'Katalog-Reichweiten bei 4 MP: {0} m', 'Дальности по каталогу при 4 Мп: {0} м'],
+        ['Velikost ikon kamer', 'Camera icon size', 'Größe der Kamerasymbole', 'Размер значков камер'],
+        ['Vyhledávání kamer ve všech podlažích', 'Find cameras across all floors', 'Kameras auf allen Etagen suchen', 'Поиск камер на всех этажах'],
+        ['Nabídky a zařízení k úpravě', 'Menus and devices to edit', 'Menüs und Geräte bearbeiten', 'Меню и устройства для редактирования'],
+        ['Ikona zařízení', 'Device icon', 'Gerätesymbol', 'Значок устройства'],
+        ['Ovládání zařízení', 'Device controls', 'Gerätesteuerung', 'Управление устройством'],
+        ['Výběr zařízení', 'Select a device', 'Gerät auswählen', 'Выбрать устройство'],
+        ['Neaktivní zařízení', 'Inactive device', 'Inaktives Gerät', 'Неактивное устройство'],
+        ['Zařízení', 'Device', 'Gerät', 'Устройство'],
+        ['SVG zachová vektorové čáry DXF, kamery a kabely. Fotografie a rastrové plány zůstanou rastrové.', 'SVG preserves DXF vector lines, cameras and cables. Photos and raster plans remain raster images.', 'SVG erhält DXF-Vektorlinien, Kameras und Kabel. Fotos und Rasterpläne bleiben Rasterbilder.', 'SVG сохраняет векторные линии DXF, камеры и кабели. Фотографии и растровые планы остаются растровыми.'],
         ['Válcová kamera', 'Bullet camera', 'Bullet-Kamera', 'Цилиндрическая камера'],
         ['Kopulová kamera', 'Dome camera', 'Dome-Kamera', 'Купольная камера'],
         ['PTZ kamera', 'PTZ camera', 'PTZ-Kamera', 'PTZ-камера'],
@@ -48,7 +69,7 @@
         ['Přehrát úvodní video', 'Play intro video', 'Einführungsvideo abspielen', 'Воспроизвести вступительное видео'],
         ['Zavřít úvodní video', 'Close intro video', 'Einführungsvideo schließen', 'Закрыть вступительное видео'],
         ['Úvodní video se nepodařilo přehrát.', 'Could not play the intro video.', 'Das Einführungsvideo konnte nicht abgespielt werden.', 'Не удалось воспроизвести вступительное видео.'],
-        ['Cloudový projekt může mít nejvýše 24 MiB. Větší projekt uložte jako soubor .TECH.', 'Cloud projects can be up to 24 MiB. Save larger projects as a .TECH file.', 'Cloud-Projekte dürfen höchstens 24 MiB groß sein. Speichern Sie größere Projekte als .TECH-Datei.', 'Облачный проект может занимать до 24 МиБ. Проекты большего размера сохраните в файл .TECH.'],
+        ['Cloudový projekt může mít nejvýše 24 MiB. Větší projekt uložte jako soubor .cctv.', 'Cloud projects can be up to 24 MiB. Save larger projects as a .cctv file.', 'Cloud-Projekte dürfen höchstens 24 MiB groß sein. Speichern Sie größere Projekte als .cctv-Datei.', 'Облачный проект может занимать до 24 МиБ. Проекты большего размера сохраните в файл .cctv.'],
         ['Velikost písma', 'Font size', 'Schriftgröße', 'Размер шрифта'],
         ['Modul přístupového systému (ACS)', 'Access control module (ACS)', 'Zutrittskontrollmodul (ACS)', 'Модуль контроля доступа (ACS)'],
         ['Čtečka přístupového systému (ACS)', 'Access control reader (ACS)', 'Zutrittsleser (ACS)', 'Считыватель системы контроля доступа (ACS)'],
@@ -80,7 +101,7 @@
         ['Pracujte s podlažími', 'Work with floors', 'Mit Geschossen arbeiten', 'Работайте с этажами'],
         ['Dole otevřete Řez budovou a vyberte podlaží. Každé podlaží má vlastní výkres a detektory.', 'Open Building section at the bottom and select a floor. Each floor has its own drawing and detectors.', 'Öffnen Sie unten den Gebäudeschnitt und wählen Sie ein Geschoss. Jedes Geschoss hat einen eigenen Plan und eigene Melder.', 'Откройте «Разрез здания» внизу и выберите этаж. У каждого этажа свой чертёж и свои датчики.'],
         ['Uložte nebo vytiskněte projekt', 'Save or print the project', 'Projekt speichern oder drucken', 'Сохраните или распечатайте проект'],
-        ['V nabídce GooM vyberte Uložit / Export pro soubor .TECH nebo Tisk pro otevření dialogu tiskárny.', 'In the GooM menu, select Save / Export for a .TECH file or Print to open the system print dialog.', 'Wählen Sie im GooM-Menü Speichern / Exportieren für eine .TECH-Datei oder Drucken für den Systemdialog.', 'В меню GooM выберите «Сохранить / Экспорт» для файла .TECH или «Печать», чтобы открыть системное окно печати.'],
+        ['V nabídce GooM vyberte Uložit / Export pro soubor .cctv nebo Tisk pro otevření dialogu tiskárny.', 'In the GooM menu, select Save / Export for a .cctv file or Print to open the system print dialog.', 'Wählen Sie im GooM-Menü Speichern / Exportieren für eine .cctv-Datei oder Drucken für den Systemdialog.', 'В меню GooM выберите «Сохранить / Экспорт» для файла .cctv или «Печать», чтобы открыть системное окно печати.'],
         ['Otevřít cloudové projekty', 'Open cloud projects', 'Cloud-Projekte öffnen', 'Открыть облачные проекты'],
         ['Ukládejte projekty a otevírejte je i z jiného zařízení.', 'Save projects and open them from another device.', 'Speichern Sie Projekte und öffnen Sie sie auf einem anderen Gerät.', 'Сохраняйте проекты и открывайте их с другого устройства.'],
         ['Tarify a předplatné', 'Plans and pricing', 'Tarife und Abos', 'Тарифы и подписки'],
@@ -90,7 +111,7 @@
         ['Zdarma', 'Free', 'Kostenlos', 'Бесплатно'],
         ['Aktivní', 'Active', 'Aktiv', 'Активный'],
         ['Import a úpravy výkresů', 'Import and edit plans', 'Pläne importieren und bearbeiten', 'Импорт и редактирование чертежей'],
-        ['Místní uložení projektů .TECH', 'Save .TECH projects locally', '.TECH-Projekte lokal speichern', 'Сохранение проектов .TECH на устройство'],
+        ['Místní uložení projektů .cctv', 'Save .cctv projects locally', '.cctv-Projekte lokal speichern', 'Сохранение проектов .cctv на устройство'],
         ['Export a tisk s vodoznakem', 'Export and print with a watermark', 'Export und Druck mit Wasserzeichen', 'Экспорт и печать с водяным знаком'],
         ['Doporučujeme', 'Recommended', 'Empfohlen', 'Рекомендуем'],
         ['Vše ze základní verze', 'Everything in Basic', 'Alles aus Basis', 'Всё из базовой версии'],
@@ -116,7 +137,7 @@
         ['Zvolte období', 'Billing interval', 'Abrechnungszeitraum', 'Период подписки'],
         ['Platba každý měsíc', 'Billed monthly', 'Monatliche Zahlung', 'Оплата каждый месяц'],
         ['Platba na celý rok', 'Billed annually', 'Jährliche Zahlung', 'Оплата за весь год'],
-        ['Bezplatná verze umožňuje kreslit, ukládat projekty .TECH do zařízení a tisknout s vodoznakem.', 'The free plan lets you draw, save .TECH projects on your device and print with a watermark.', 'Im kostenlosen Tarif können Sie zeichnen, .TECH-Projekte lokal speichern und mit Wasserzeichen drucken.', 'В бесплатной версии можно чертить, сохранять проекты .TECH на устройство и печатать с водяным знаком.'],
+        ['Bezplatná verze umožňuje kreslit, ukládat projekty .cctv do zařízení a tisknout s vodoznakem.', 'The free plan lets you draw, save .cctv projects on your device and print with a watermark.', 'Im kostenlosen Tarif können Sie zeichnen, .cctv-Projekte lokal speichern und mit Wasserzeichen drucken.', 'В бесплатной версии можно чертить, сохранять проекты .cctv на устройство и печатать с водяным знаком.'],
         ['Otevřete na počítači nebo tabletu', 'Open on a computer or tablet', "Auf einem Computer oder Tablet öffnen", "Откройте на компьютере или планшете"], ['Načítání aplikace…', 'Loading application…', "Anwendung wird geladen…", "Загрузка приложения…"],
         ['Přístup od správce do: {0}', 'Administrator access until: {0}', "Zugang durch Administrator bis: {0}", "Доступ от администратора до {0}"],
         ['Zobrazit legendu', 'Show legend', "Legende einblenden", "Показать легенду"], ['Skrýt legendu', 'Hide legend', "Legende ausblenden", "Скрыть легенду"], ['Legenda:', 'Legend:', "Legende:", "Легенда:"],
@@ -158,7 +179,7 @@
         ['План загружен с предупреждением', 'Výkres načten s upozorněním', 'Drawing loaded with a warning', "Plan mit Warnung geladen", "Чертёж загружен с предупреждением"], ['Chyba při načítání PDF.', 'Could not load the PDF.', "PDF konnte nicht geladen werden.", "Не удалось загрузить PDF."],
         ['Ошибка загрузки PDF', 'Chyba načítání PDF', 'PDF loading error', "Fehler beim Laden der PDF-Datei", "Ошибка загрузки PDF"], ['Chyba při zpracování DXF souboru.', 'Could not process the DXF file.', "DXF-Datei konnte nicht verarbeitet werden.", "Не удалось обработать файл DXF."],
         ['Ошибка загрузки DXF', 'Chyba načítání DXF', 'DXF loading error', "Fehler beim Laden der DXF-Datei", "Ошибка загрузки DXF"], ['Soubor je prázdný.', 'The file is empty.', "Die Datei ist leer.", "Файл пуст."], ['Neznámá struktura dat v souboru.', 'Unknown file data structure.', "Unbekannte Datenstruktur in der Datei.", "Неизвестная структура данных в файле."],
-        ['Obnovený projekt', 'Recovered project', "Wiederhergestelltes Projekt", "Восстановленный проект"], ['Chyba při načítání souboru .TECH!\n\nDetail chyby: ', 'Could not load the .TECH file.\n\nError details: ', "Die .TECH-Datei konnte nicht geladen werden.\n\nFehlerdetails: ", "Не удалось загрузить файл .TECH.\n\nПодробности ошибки: "],
+        ['Obnovený projekt', 'Recovered project', "Wiederhergestelltes Projekt", "Восстановленный проект"], ['Soubor projektu se nepodařilo otevřít.', 'Could not open the project file.', 'Die Projektdatei konnte nicht geöffnet werden.', 'Не удалось открыть файл проекта.'],
         ['Не удалось прочитать файл проекта.', 'Soubor projektu nelze přečíst.', 'Could not read the project file.', "Die Projektdatei konnte nicht gelesen werden.", "Не удалось прочитать файл проекта."], ['Bez názvu', 'Untitled', "Unbenannt", "Без названия"],
         ['Проверяем вход…', 'Ověřování přihlášení…', 'Checking sign-in…', "Anmeldung wird geprüft…", "Проверяем вход…"], ['Вы вошли как {0}', 'Přihlášený uživatel: {0}', 'Signed in as {0}', "Angemeldet als {0}", "Вы вошли как {0}"], ['Google-пользователь', 'Uživatel', 'User', "Benutzer", "Пользователь"],
         ['Проверка входа заняла слишком много времени. Проверьте интернет и попробуйте снова.', 'Ověření přihlášení trvá příliš dlouho. Zkontrolujte připojení a zkuste to znovu.', 'Sign-in verification timed out. Check your connection and try again.', "Die Anmeldeprüfung dauerte zu lange. Prüfen Sie Ihre Verbindung und versuchen Sie es erneut.", "Проверка входа заняла слишком много времени. Проверьте подключение и попробуйте ещё раз."],
@@ -168,7 +189,7 @@
         ['Не удалось загрузить сервис входа. Проверьте подключение и попробуйте снова.', 'Přihlašovací službu nelze načíst. Zkontrolujte připojení a zkuste to znovu.', 'Could not load the sign-in service. Check your connection and try again.', "Anmeldedienst konnte nicht geladen werden. Prüfen Sie die Verbindung und versuchen Sie es erneut.", "Не удалось загрузить сервис входа. Проверьте подключение и попробуйте ещё раз."],
         ['Сначала заполните веб-конфигурацию Firebase в config.js.', 'Doplňte konfiguraci Firebase v souboru config.js.', 'Complete the Firebase configuration in config.js.', "Vervollständigen Sie die Firebase-Konfiguration in config.js.", "Заполните конфигурацию Firebase в config.js."],
         ['Вход выполняется...', 'Přihlašování…', 'Signing in…', "Anmeldung läuft…", "Выполняется вход…"],
-        ['Google-вход доступен только на сайте с HTTPS или localhost. Откройте GOOM по адресу https://pzts.five.surf/.', 'Přihlášení je dostupné pouze přes HTTPS nebo localhost. Otevřete https://pzts.five.surf/.', 'Sign-in requires HTTPS or localhost. Open https://pzts.five.surf/.', "Die Anmeldung erfordert HTTPS oder localhost. Öffnen Sie https://pzts.five.surf/.", "Для входа нужен HTTPS или localhost. Откройте https://pzts.five.surf/."],
+        ['Для входа через Google нужен HTTPS или localhost. Откройте {0}', 'Přihlášení přes Google vyžaduje HTTPS nebo localhost. Otevřete {0}', 'Google sign-in requires HTTPS or localhost. Open {0}', 'Die Anmeldung mit Google erfordert HTTPS oder localhost. Öffnen Sie {0}', 'Для входа через Google нужен HTTPS или localhost. Откройте {0}'],
         ['Добавьте домен сайта в список разрешённых доменов Firebase Authentication.', 'Přidejte doménu webu mezi povolené domény Firebase Authentication.', 'Add the website domain to Firebase Authentication authorized domains.', "Fügen Sie die Website-Domain in Firebase Authentication zu den autorisierten Domains hinzu.", "Добавьте домен сайта в список разрешённых в Firebase Authentication."],
         ['Включите провайдер Google в настройках Firebase Authentication.', 'Povolte poskytovatele Google ve Firebase Authentication.', 'Enable the Google provider in Firebase Authentication.', "Aktivieren Sie Google als Anbieter in Firebase Authentication.", "Включите вход через Google в Firebase Authentication."],
         ['Не удалось войти через Google', 'Přihlášení přes Google se nezdařilo', 'Google sign-in failed', "Google-Anmeldung fehlgeschlagen", "Не удалось войти через Google"], ['Подключаем сервис входа…', 'Připojování přihlašovací služby…', 'Connecting to the sign-in service…', "Verbindung zum Anmeldedienst wird hergestellt…", "Подключаемся к сервису входа…"],
@@ -271,7 +292,7 @@
         ['Добро пожаловать!', 'Vítejte!', 'Welcome!', "Willkommen!", "Добро пожаловать!"], ['Войдите в аккаунт Google, чтобы перейти к своим проектам.', 'Přihlaste se a pokračujte ke svým projektům.', 'Sign in to continue to your projects.', "Melden Sie sich an, um mit Ihren Projekten fortzufahren.", "Войдите, чтобы продолжить работу с проектами."],
         ['Войти или зарегистрироваться с Google', 'Pokračovat s Google', 'Continue with Google', "Mit Google fortfahren", "Продолжить через Google"], ['Выйти', 'Odhlásit se', 'Sign out', "Abmelden", "Выйти"],
         ['Перейти к проектам', 'Přejít k projektům', 'Continue to projects', "Zu den Projekten", "Перейти к проектам"], ['Выберите проект', 'Vyberte projekt', 'Choose a project', "Projekt auswählen", "Выберите проект"],
-        ['Продолжить последний проект', 'Pokračovat v posledním projektu', 'Resume the last project', "Letztes Projekt fortsetzen", "Продолжить последний проект"], ['Otevřít projekt (.TECH)', 'Open project (.TECH)', "Projekt öffnen (.TECH)", "Открыть проект (.TECH)"],
+        ['Продолжить последний проект', 'Pokračovat v posledním projektu', 'Resume the last project', "Letztes Projekt fortsetzen", "Продолжить последний проект"], ['Otevřít projekt (.cctv)', 'Open project (.cctv)', "Projekt öffnen (.cctv)", "Открыть проект (.cctv)"],
         ['Назад к аккаунту', 'Zpět k účtu', 'Back to account', "Zurück zum Konto", "Назад к аккаунту"], ['Zadejte název projektu:', 'Enter a project name:', "Geben Sie den Projektnamen ein:", "Введите название проекта:"], ['Zrušit', 'Cancel', "Abbrechen", "Отмена"], ['Vytvořit', 'Create', "Erstellen", "Создать"],
         ['Закрыть', 'Zavřít', 'Close', "Schließen", "Закрыть"], ['Сохранить текущий проект', 'Uložit aktuální projekt', 'Save current project', "Aktuelles Projekt speichern", "Сохранить текущий проект"], ['Обновить', 'Obnovit', 'Refresh', "Aktualisieren", "Обновить"],
         ['Отмена', 'Zrušit', 'Cancel', "Abbrechen", "Отмена"], ['Пропустить', 'Přeskočit', 'Skip', "Überspringen", "Пропустить"], ['Nahrát výkres (PDF/IMG)', 'Upload plan (PDF/IMG)', "Plan hochladen (PDF/Bild)", "Загрузить план (PDF/изображение)"], ['Uložit / Export', 'Save / Export', "Speichern / Exportieren", "Сохранить / Экспорт"], ['Tisk', 'Print', "Drucken", "Печать"],
@@ -283,8 +304,8 @@
         ['Цвет', 'Barva', 'Color', "Farbe", "Цвет"], ['Другой цвет', 'Vlastní barva', 'Custom color', "Eigene Farbe", "Свой цвет"], ['Заливка фигуры', 'Výplň tvaru', 'Fill shape', "Form füllen", "Заливка фигуры"],
         ['Размер', 'Velikost', 'Size', "Größe", "Размер"], ['Толщина линии', 'Tloušťka čáry', 'Line width', "Linienstärke", "Толщина линии"], ['Поворот', 'Otočení', 'Rotation', "Drehung", "Поворот"],
         ['Очистить', 'Vymazat', 'Clear', "Leeren", "Очистить"], ['Сбросить', 'Obnovit výchozí', 'Reset', "Zurücksetzen", "Сбросить"], ['Exportovat projekt', 'Export project', "Projekt exportieren", "Экспорт проекта"],
-        ['Zvolte formát pro uložení. .TECH slouží pro opětovné otevření a úpravu projektu.', 'Choose a save format. Use .TECH to reopen and edit the project.', "Wählen Sie ein Speicherformat. Mit .TECH können Sie das Projekt erneut öffnen und bearbeiten.", "Выберите формат сохранения. Файл .TECH можно снова открыть для редактирования."],
-        ['Uložit Projekt (.TECH)', 'Save project (.TECH)', "Projekt speichern (.TECH)", "Сохранить проект (.TECH)"], ['Export jako Obrázek (PNG)', 'Export image (PNG)', "Bild exportieren (PNG)", "Экспортировать изображение (PNG)"], ['Export jako Dokument (PDF)', 'Export document (PDF)', "Dokument exportieren (PDF)", "Экспортировать документ (PDF)"],
+        ['Zvolte formát pro uložení. .cctv slouží pro opětovné otevření a úpravu projektu.', 'Choose a save format. Use .cctv to reopen and edit the project.', "Wählen Sie ein Speicherformat. Mit .cctv können Sie das Projekt erneut öffnen und bearbeiten.", "Выберите формат сохранения. Файл .cctv можно снова открыть для редактирования."],
+        ['Uložit Projekt (.cctv)', 'Save project (.cctv)', "Projekt speichern (.cctv)", "Сохранить проект (.cctv)"], ['Export jako Obrázek (PNG)', 'Export image (PNG)', "Bild exportieren (PNG)", "Экспортировать изображение (PNG)"], ['Export jako Dokument (PDF)', 'Export document (PDF)', "Dokument exportieren (PDF)", "Экспортировать документ (PDF)"],
         ['Poznámka / Text', 'Note / Text', "Notiz / Text", "Заметка / Текст"], ['Uložit text', 'Save text', "Text speichern", "Сохранить текст"], ['Adresa prvku', 'Device address', "Geräteadresse", "Адрес устройства"], ['Smažte pole pro návrat na "Auto".', 'Clear the field to return to “Auto”.', "Leeren Sie das Feld, um wieder „Automatisch“ zu wählen.", "Очистите поле для автоматической нумерации."],
         ['❌ Adresa je obsazena!', '❌ This address is already used!', "❌ Diese Adresse ist bereits vergeben!", "❌ Этот адрес уже используется!"], ['Typ prvku', 'Device type', "Gerätetyp", "Тип устройства"], ['Adresa:', 'Address:', "Adresse:", "Адрес:"], ['Sběrnice: 1', 'Bus: 1', "Bus: 1", "Шина: 1"],
         ['Tajný režim RAMEN!', 'Secret RAMEN mode!', "Geheimer RAMEN-Modus!", "Секретный режим RAMEN!"], ['Nástroj pro přidání čerstvého ramenu byl aktivován. Můžete zapojovat nudlové kabely!', 'The fresh ramen tool is active. You can connect noodle cables!', "Das Ramen-Werkzeug ist aktiv. Verbinden Sie Ihre Nudelkabel!", "Инструмент «Рамен» активен. Можно прокладывать кабели из лапши!"], ['Chutné!', 'Delicious!', "Guten Appetit!", "Приятного аппетита!"],
@@ -428,8 +449,6 @@
     ];
 
     const locales = { cs: 'cs-CZ', en: 'en-GB', de: 'de-DE', ru: 'ru-RU' };
-    window.goomProduct = new URLSearchParams(location.search).get('app') === 'CCTV' ? 'CCTV' : 'PZTS';
-    const welcomeAcronyms = { cs: 'PZTS', en: 'I&HAS', de: 'GMA', ru: 'СОТС' };
     const normalizeLanguage = value => Object.hasOwn(locales, value) ? value : 'cs';
     const catalog = new Map();
     for (const row of rows) {
@@ -497,16 +516,11 @@
         }
     }
     window.localizeGoom = localize;
-    function localizeWelcomeBrand() {
-        const brand = document.querySelector('#welcomeModal .welcome-brand');
-        if (brand) brand.textContent = window.goomProduct === 'CCTV' ? 'CCTV' : welcomeAcronyms[language];
-    }
     window.setGoomLanguage = value => {
         language = normalizeLanguage(value);
         document.documentElement.lang = language;
         try { localStorage.setItem('goom.language', language); } catch {}
         localize();
-        localizeWelcomeBrand();
         document.querySelectorAll('[data-language-select]').forEach(select => { select.value = language; });
         window.dispatchEvent(new Event('goom-language-changed'));
         window.requestRedraw?.();
@@ -514,7 +528,6 @@
     document.documentElement.lang = language;
     document.addEventListener('DOMContentLoaded', () => {
         localize();
-        localizeWelcomeBrand();
         document.querySelectorAll('[data-language-select]').forEach(select => {
             select.value = language;
             select.addEventListener('change', () => window.setGoomLanguage(select.value));

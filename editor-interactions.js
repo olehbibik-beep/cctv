@@ -1,7 +1,8 @@
 function deviceBriefName(device){
     if (device.type === 'textNode' && device.plainText === true) return tr('Text na výkresu');
     const names={pir:'PIR detektor',pir_wl:'Bezdrátový PIR',magnet:'Magnetický kontakt',magnet_wl:'Bezdrátový magnet',glassbreak:'Detektor rozbití skla',panic:'Tísňové tlačítko',siren:'Siréna',panel:'Ústředna',keypad:'Klávesnice',expander:'Expandér',abax:'ABAX',textNode:'Poznámka',deactivated:'Neaktivní detektor',ramen:'Ramen',...ADDITIONAL_DEVICE_LABELS};
-    return tr(names[device.type]||'Detektor');
+    if (APP_PRODUCT === 'CCTV' && device.type === 'deactivated') return tr('Neaktivní zařízení');
+    return tr(names[device.type] || (APP_PRODUCT === 'CCTV' ? 'Zařízení' : 'Detektor'));
 }
 function updateConnectionButton(){
     const button=document.getElementById('btnToggleConnections'),floor=floors[currentFloorIndex];if(!button||!floor)return;
@@ -35,6 +36,13 @@ function updateDeviceHover(event,x,y){
     document.getElementById('ttType').textContent=deviceBriefName(found);
     const parts=getDeviceAddressParts(found),address=parts.prefix+parts.number;
     document.getElementById('ttNumber').textContent=address;document.getElementById('ttNumber').hidden=!address;
+    const cameraDetails = document.getElementById('ttCameraOptics');
+    const optics = getCameraOptics(found);
+    const lens = getCameraLens(found.lensId);
+    cameraDetails.hidden = !optics;
+    if (optics) {
+        cameraDetails.textContent = [found.megapixels ? `${found.megapixels} MP` : '', lens?.label, `${optics.angle}°`].filter(Boolean).join(' · ');
+    }
     document.getElementById('ttLoop').hidden=true;document.getElementById('ttName').hidden=true;
     tooltip.style.opacity='1';
     const width=tooltip.offsetWidth,height=tooltip.offsetHeight;

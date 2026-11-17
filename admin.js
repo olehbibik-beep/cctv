@@ -10,7 +10,7 @@
     const pageSize = 25;
     let epoch = 0, pageRequest = 0;
     let query = '', users = [], tokens = [null], pageIndex = 0, nextPage = null;
-    let program = 'PZTS';
+    let program = 'CCTV';
     let changing = false;
     let loaded = false;
     let visitRequest = 0;
@@ -504,7 +504,7 @@
             if (currentEpoch !== epoch) return;
             session = verified;
             byId('adminIdentity').textContent = `${user.email || user.uid} · ${roleLabels[session.role]}`;
-            program = session.programs[0];
+            program = session.programs.includes('CCTV') ? 'CCTV' : session.programs[0];
             showView('overview');
             renderPrograms();
             renderUsers();

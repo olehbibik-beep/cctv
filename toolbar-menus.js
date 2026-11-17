@@ -247,11 +247,13 @@ function applyToolbarMenu(menu, persist = true) {
     toolbarMenuDeviceButtons.forEach(button => {
         button.hidden = !visibleTypes.has(button.dataset.type);
     });
+    const cameraPicker = document.getElementById('btnCameraPicker');
+    if (cameraPicker) cameraPicker.hidden = !Object.keys(CCTV_CAMERAS).some(type => visibleTypes.has(type));
     const textTools = document.getElementById('textTools');
     textTools.hidden = !visibleTypes.has('textNode');
 
     const selectorChildren = [...document.getElementById('deviceSetTools').children];
-    const isVisibleTool = child => !child.hidden && (child === textTools || child.matches('.device-btn[data-type]'));
+    const isVisibleTool = child => !child.hidden && (child === textTools || child.matches('.device-btn'));
     selectorChildren.forEach((element, index) => {
         if (!element.classList.contains('menu-divider')) return;
         const beforeHasDevice = selectorChildren.slice(0, index).some(isVisibleTool);

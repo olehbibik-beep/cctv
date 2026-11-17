@@ -6,7 +6,7 @@ const onboardingSteps = [
         'Detektor přetáhněte na nové místo. Otočíte ho klávesami S a D nebo šipkami u vybraného detektoru na tabletu.'],
     ['Pracujte s podlažími', APP_PRODUCT === 'CCTV' ? 'Každé podlaží má vlastní výkres a kamery.' :
         'Dole otevřete Řez budovou a vyberte podlaží. Každé podlaží má vlastní výkres a detektory.'],
-    ['Uložte nebo vytiskněte projekt', 'V nabídce GooM vyberte Uložit / Export pro soubor .TECH nebo Tisk pro otevření dialogu tiskárny.']
+    ['Uložte nebo vytiskněte projekt', 'V nabídce GooM vyberte Uložit / Export pro soubor .cctv nebo Tisk pro otevření dialogu tiskárny.']
 ];
 
 const onboardingPanel = document.getElementById('onboardingBackdrop');
