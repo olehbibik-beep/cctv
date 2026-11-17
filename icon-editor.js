@@ -240,7 +240,7 @@ function redrawIconEditor() {
         drawEditorShape(iconEditorCtx, shape);
         if (index === iconEditorSelectedIndex) {
             iconEditorCtx.save();
-            iconEditorCtx.strokeStyle = '#0ea5e9';
+            iconEditorCtx.strokeStyle = '#9b88b4';
             iconEditorCtx.lineWidth = 1.5;
             iconEditorCtx.setLineDash([5, 4]);
             const height = iconShapeHeight(shape);

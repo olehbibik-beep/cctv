@@ -1412,7 +1412,7 @@ if (devNumberInput) {
         if (isNaN(newNum) || !editingDevice) {
             if (btnSave) { btnSave.innerHTML = '✅'; btnSave.style.pointerEvents = 'auto'; }
             if (warn) warn.style.display = 'none';
-            e.target.style.borderColor = '#0ea5e9';
+            e.target.style.borderColor = '#9b88b4';
             return;
         }
 

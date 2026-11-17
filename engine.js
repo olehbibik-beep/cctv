@@ -89,7 +89,7 @@ function refreshAutomaticCableEnds(cable, from, to) {
     }
 }
 
-const independentDeviceNumberTypes = new Set(['expander', 'keypad', 'abax', 'siren', 'acs_module', 'acs_reader', 'cctv_nvr', 'cctv_poe']);
+const independentDeviceNumberTypes = new Set(['expander', 'keypad', 'abax', 'siren', 'acs_module', 'acs_reader', 'cctv_nvr', 'cctv_poe', 'cctv_doorbell', 'cctv_antenna', 'cctv_receiver']);
 
 function getDeviceAddressParts(device) {
     if (!device.number || ['panel', 'abax', 'textNode', 'ramen', 'deactivated', 'cableTool'].includes(device.type)) return { prefix: '', number: '' };

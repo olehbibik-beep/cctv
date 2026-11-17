@@ -1,5 +1,5 @@
 /* Fixed welcome composition and shared editor controls. */
-:root { --menu-bg: #292b2e; --menu-line: #515459; --menu-highlight: #fff; --app-edge: 8px; }
+:root { --menu-bg: #292b2e; --menu-line: #515459; --menu-highlight: #fff; --app-edge: 8px; accent-color: #9b88b4; }
 html { background: #d4d5d7; }
 body {
     margin: var(--app-edge); width: calc(100% - 2 * var(--app-edge));
@@ -111,7 +111,7 @@ body::after {
 #btnFeedbackSend { background: #a6dd68; color: #182610; }
 #btnFeedbackSend:disabled { opacity: .5; cursor: default; }
 #cameraOptics { display: grid; grid-template-columns: 1fr minmax(110px, 45%); align-items: center; gap: 10px; border: 0; border-top: 1px solid #414147; margin: 18px 0 0; padding: 10px 0 0; text-align: left; font-size: 13px; }
-#cameraOptics legend { padding: 0 6px; color: #b8dff3; }
+#cameraOptics legend { padding: 0 6px; color: #d5c9e2; }
 #cameraOptics input { box-sizing: border-box; width: 100%; padding: 6px; color: inherit; background: #161619; border: 1px solid #565660; border-radius: 5px; }
 #cameraOptics select { min-width: 0; width: 100%; }
 #btnCameraPicker { gap: 5px; color: #27272a; font: inherit; font-size: 12px; font-weight: 600; }
@@ -122,14 +122,14 @@ body::after {
 .camera-type-card { display: grid; justify-items: center; align-content: center; gap: 8px; min-width: 0; min-height: 46px; padding: 10px; border: 1px solid #45464d; border-radius: 8px; background: #24252b; color: #e1e1e6; cursor: pointer; }
 .camera-type-card img { width: 100%; height: clamp(56px, 14vh, 110px); object-fit: contain; }
 .camera-type-card[data-camera-type="cctv_ptz"] { grid-column: 1 / -1; }
-.camera-type-card[aria-pressed="true"] { border-color: #38bdf8; background: #153144; }
-.camera-type-card:focus-visible, #btnCameraPicker:focus-visible { outline: 2px solid #38bdf8; outline-offset: 2px; }
+.camera-type-card[aria-pressed="true"] { border-color: #b6a4cc; background: #34303d; }
+.camera-type-card:focus-visible, #btnCameraPicker:focus-visible { outline: 2px solid #b6a4cc; outline-offset: 2px; }
 .camera-picker-fields { display: grid; gap: 6px; text-align: left; }
 .camera-picker-fields label { color: #d4d4d8; font-size: 13px; }
 .camera-picker-fields select { width: 100%; min-height: 36px; margin-bottom: 8px; }
-#cameraLensSummary { margin: 2px 0; color: #b8dff3; font-size: 13px; line-height: 1.5; white-space: pre-line; }
+#cameraLensSummary { margin: 2px 0; color: #d5c9e2; font-size: 13px; line-height: 1.5; white-space: pre-line; }
 .camera-picker-content .modal-buttons { margin-top: 18px; }
-.camera-picker-content .camera-picker-apply { background: #0e7490; color: #fff; }
+.camera-picker-content .camera-picker-apply { background: #8e7ba8; color: #fff; }
 @media (max-width: 640px) { .camera-picker-layout { grid-template-columns: 1fr; gap: 14px; } }
 [data-goom-product="CCTV"] :is(.pro-period, .pro-price-option, .pro-pricing-footer .account-note) { display: none; }
 .modal-content, .app-dialog-card { position: relative; isolation: isolate; }
@@ -382,8 +382,8 @@ body::after {
 .sliding-row-container .text-tools .device-btn { width: 38px; min-height: 26px; padding: 3px 5px; color: inherit; font: 600 12px sans-serif; }
 .text-tools .device-btn:first-child { border-radius: 999px 0 0 999px; }
 .text-tools .device-btn:last-child { border-radius: 0 999px 999px 0; border-left: 1px solid #d4d4d8; }
-.sliding-row-container .text-tools .device-btn.active { background: #dbeafe; color: #075985; }
-.text-tools .device-btn:focus-visible { outline: 2px solid #0284c7; outline-offset: -2px; }
+.sliding-row-container .text-tools .device-btn.active { background: #e6dfed; color: #6e5a84; }
+.text-tools .device-btn:focus-visible { outline: 2px solid #9b88b4; outline-offset: -2px; }
 @media (pointer: coarse) {
     .sliding-row-container .text-tools .device-btn { min-width: 44px; min-height: 44px; }
 }

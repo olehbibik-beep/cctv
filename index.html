@@ -16,7 +16,7 @@
             }
         })();
     </script>
-    <script src="i18n.js?v=20261117-cctv-57"></script>
+    <script src="i18n.js?v=20261117-cctv-58"></script>
     <script src="device-support.js?v=20261114-loading-27"></script>
     <style>
         :root {
@@ -46,12 +46,12 @@
         body::after {
             content: ''; position: fixed; inset: 0; z-index: 999998; pointer-events: none;
             border: 2px solid transparent; border-radius: 8px; box-sizing: border-box;
-            background: linear-gradient(135deg, #38bdf8 0%, #38bdf8 18%, #8b5cf6 82%, #a855f7 100%) border-box;
+            background: linear-gradient(135deg, #b6a4cc 0%, #b6a4cc 18%, #8b5cf6 82%, #a855f7 100%) border-box;
             -webkit-mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
             -webkit-mask-composite: xor;
             mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
             mask-composite: exclude;
-            box-shadow: inset 0 0 10px rgba(56, 189, 248, 0.08), 0 0 10px rgba(168, 85, 247, 0.08);
+            box-shadow: inset 0 0 10px rgba(155, 136, 180, 0.08), 0 0 10px rgba(168, 85, 247, 0.08);
         }
         
         .toolbar { background: var(--bg-toolbar); display: flex; flex-direction: column; z-index: 10; position: relative; box-shadow: 0 4px 15px rgba(0,0,0,0.3); }
@@ -68,7 +68,7 @@
             position: relative; display: flex; align-items: center; justify-content: center;
             padding: 6px; border: 0; border-radius: 6px; background: transparent; cursor: pointer;
         }
-        .menu-logo-button:focus-visible { outline: 2px solid #38bdf8; outline-offset: 2px; }
+        .menu-logo-button:focus-visible { outline: 2px solid #b6a4cc; outline-offset: 2px; }
         .menu-logo-button { display: grid; }
         .menu-logo-button img { display: block; grid-area: 1 / 1; width: 28px; height: 28px; object-fit: contain; transition: opacity 0.15s ease; }
         .menu-logo-button .menu-logo-hover { opacity: 0; }
@@ -99,7 +99,7 @@
         .arrow-tab { 
             position: absolute; 
             top: 0; left: 15px; /* Прижимаем к левому краю и верху */
-            background: #7dd3fc; /* Голубой цвет */
+            background: #b6a4cc; /* Matte lavender */
             border: none; box-shadow: 0 4px 10px rgba(0,0,0,0.3);
             width: 65px; 
             height: 60px; /* Высота язычка (перекрывает меню и свисает вниз) */
@@ -110,10 +110,10 @@
             padding-bottom: 6px; box-sizing: border-box;
             transition: all 0.3s ease;
         }
-        .arrow-tab:hover { background: #38bdf8; }
+        .arrow-tab:hover { background: #b6a4cc; }
         .arrow-tab svg { transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1); width: 22px; height: 22px; }
         .arrow-tab.open svg { transform: rotate(180deg); }
-        .arrow-tab.open { background: #0ea5e9; color: #ffffff; }
+        .arrow-tab.open { background: #9b88b4; color: #ffffff; }
         
         /* Device toolbar on a light background. */
         .sliding-row-container .device-selector-group { 
@@ -196,7 +196,7 @@
         .email-auth-form label, .account-form label { display: flex; flex-direction: column; gap: 5px; color: #d4d4d8; font-size: 12px; }
         .account-input { box-sizing: border-box; width: 100%; min-height: 40px; border: 1px solid #52525b; border-radius: 6px; padding: 9px 11px; background: rgba(18,18,20,0.9); color: #fff; font: inherit; }
         .auth-link { border: 0; background: transparent; color: #a5d8fa; cursor: pointer; padding: 5px 0; text-align: left; font: inherit; font-size: 12px; }
-        .auth-primary { justify-content: center; background: #0ea5e9; color: #fff; }
+        .auth-primary { justify-content: center; background: #9b88b4; color: #fff; }
         #welcomeEmailBlock .welcome-description { font-size: 12px; }
         #welcomeModal[data-step="email"] .welcome-panel { justify-content: flex-start; }
         #welcomeModal[data-step="email"] .welcome-brand { font-size: 26px; }
@@ -225,7 +225,7 @@
         #welcomeModal .welcome-auth-button { background: rgba(37,37,41,0.82); color: #f4f4f5; border: 1px solid rgba(255,255,255,0.22); }
         #cloudSyncIndicator { max-width: 220px; overflow: hidden; color: #8d8d99; font-size: 11px; text-overflow: ellipsis; white-space: nowrap; }
         #cloudSyncIndicator[data-state="saved"] { color: #86efac; }
-        #cloudSyncIndicator[data-state="syncing"] { color: #7dd3fc; }
+        #cloudSyncIndicator[data-state="syncing"] { color: #b6a4cc; }
         #cloudSyncIndicator[data-state="error"], #cloudSyncIndicator[data-state="conflict"] { color: #fca5a5; }
         .cloud-projects-content { box-sizing: border-box; max-width: 720px; max-height: min(720px, calc(100vh - 40px)); overflow: auto; }
         #cloudProjectsModal { z-index: 400; justify-content: flex-end; padding: 12px; box-sizing: border-box; }
@@ -261,7 +261,7 @@
         .app-dialog-actions { display: flex; flex-wrap: wrap; justify-content: flex-end; gap: 10px; }
         .app-dialog-actions button { min-width: 100px; justify-content: center; text-align: center; }
         .app-dialog-cancel { background: #303036 !important; color: #e1e1e6 !important; }
-        .app-dialog-confirm { background: #0ea5e9 !important; color: #fff !important; }
+        .app-dialog-confirm { background: #9b88b4 !important; color: #fff !important; }
         @media (min-width: 600px) and (max-width: 1100px) {
             .toolbar-row { flex-wrap: wrap; gap: 8px 12px; padding: 8px 14px; }
             .toolbar-row > .toolbar-section { margin-left: auto !important; flex-wrap: wrap; }
@@ -361,7 +361,7 @@
         .icon-editor-canvas-wrap { position: relative; width: min(100%, 360px); }
         .icon-editor-canvas-controls { display: flex; align-items: center; justify-content: flex-end; margin-top: 2px; }
         .icon-editor-canvas-controls .icon-editor-tools { flex-direction: row; }
-        .icon-editor-text-input { position: absolute; z-index: 2; width: min(160px, 80%); min-width: 44px; box-sizing: border-box; padding: 4px 6px !important; border: 1px solid #0ea5e9 !important; border-radius: 3px !important; background: rgba(255,255,255,.94) !important; color: #18181b !important; text-align: center; font-weight: 700; transform: translate(-50%, -50%); }
+        .icon-editor-text-input { position: absolute; z-index: 2; width: min(160px, 80%); min-width: 44px; box-sizing: border-box; padding: 4px 6px !important; border: 1px solid #9b88b4 !important; border-radius: 3px !important; background: rgba(255,255,255,.94) !important; color: #18181b !important; text-align: center; font-weight: 700; transform: translate(-50%, -50%); }
         #iconEditorModal .icon-editor-field { gap: 4px; margin-bottom: 7px; }
         .toolbar-menu-cycle { width: 32px; min-width: 32px; height: 34px; justify-content: center; border: 0 !important; background: transparent !important; box-shadow: none !important; }
         .toolbar-menu-cycle:not(:disabled):hover { color: #15803d !important; }
@@ -404,7 +404,7 @@
         .plan-text-size { display: flex; align-items: center; justify-content: space-between; gap: 8px; margin-top: 8px; font-size: 13px; }
         #planTextForm .modal-buttons { margin-top: 12px; justify-content: flex-end; gap: 6px; }
         #planTextForm .btn-cad { padding: 6px 10px; font-size: 13px; }
-        #btnSaveText { background: #0ea5e9; color: #101820; font-weight: 700; }
+        #btnSaveText { background: #9b88b4; color: #101820; font-weight: 700; }
 
         .help-container { position: fixed; bottom: 40px; left: 20px; z-index: 200; display: flex; align-items: center; gap: 15px; }
         .help-btn { 
@@ -433,7 +433,7 @@
         .floor-controls { display: flex; align-items: center; gap: 16px; z-index: 2; height: 100%; }
         .floor-name { font-size: 13px; font-weight: bold; color: #e1e1e6; font-family: monospace; letter-spacing: 1px; min-width: 40px; text-align: center; cursor: default; padding: 0 5px;}
         .footer-icon { background: transparent; border: none; color: var(--text-muted); cursor: pointer; display: flex; align-items: center; justify-content: center; height: 100%; padding: 0 8px; transition: 0.2s; }
-        .footer-icon:hover { color: #0ea5e9; background: rgba(14, 165, 233, 0.1); }
+        .footer-icon:hover { color: #9b88b4; background: rgba(155, 136, 180, 0.1); }
         .footer-icon svg { width: 14px; height: 14px; stroke-width: 2; stroke: currentColor; fill: none; }
 
         .setting-col { display: flex; align-items: center; gap: 5px; }
@@ -445,7 +445,7 @@
         }
         .toolbar-icon-button svg { display: block; width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; }
         .toolbar-icon-button:hover { color: #cbd5e1; }
-        .toolbar-icon-button[aria-pressed="true"] { color: #38bdf8; }
+        .toolbar-icon-button[aria-pressed="true"] { color: #b6a4cc; }
         .toolbar-icon-button:focus-visible { outline: 1px solid currentColor; outline-offset: 2px; }
         .grid-toggle {
             width: 28px; height: 24px; padding: 3px; margin-top: 1px; border: 0; border-radius: 4px;
@@ -453,7 +453,7 @@
         }
         .grid-toggle svg { display: block; width: 100%; height: 100%; fill: none; stroke: currentColor; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; }
         .grid-toggle:hover { color: #cbd5e1; }
-        .grid-toggle[aria-pressed="true"] { color: #38bdf8; background: transparent; }
+        .grid-toggle[aria-pressed="true"] { color: #b6a4cc; background: transparent; }
         .grid-toggle:focus-visible { outline: 1px solid currentColor; outline-offset: 2px; }
 
 /* Убираем стрелочки у поля ввода чисел */
@@ -463,7 +463,7 @@
 
 
     </style>
-    <link rel="stylesheet" href="ui-theme.css?v=20261117-cctv-57">
+    <link rel="stylesheet" href="ui-theme.css?v=20261117-cctv-58">
 </head>
 <body>
     <div id="deviceSupportNotice" role="alert">
@@ -622,7 +622,7 @@
                         <div class="pro-name"><span id="googleAuthUser"></span><span id="welcomeProBadge" class="pro-badge" hidden>PROJECT</span></div>
                         <button id="btnGoogleSignOut" class="btn-cad welcome-signout" type="button">Odhlásit se</button>
                     </div>
-                    <button id="btnWelcomeContinue" class="btn-cad" type="button" hidden style="background: #0ea5e9; color: #fff;">Přejít k projektům</button>
+                    <button id="btnWelcomeContinue" class="btn-cad" type="button" hidden style="background: #9b88b4; color: #fff;">Přejít k projektům</button>
                     <button id="btnWelcomeProfile" class="auth-link" type="button" hidden>Uživatelský účet</button>
                 </div>
 
@@ -658,7 +658,7 @@
 
                 <div id="welcomeNamingBlock" class="welcome-naming" hidden>
                     <div style="font-size: 13px; color: #a1a1aa; margin-bottom: -6px;">Zadejte název projektu:</div>
-                    <input type="text" id="welcomeProjectNameInput" class="welcome-project-name" value="Nový projekt" placeholder="Např. Rodinný dům Praha…" style="background: #1c1c1f; border: 1px solid #313135; color: #ffffff; font-size: 14px; font-weight: 600; outline: none; transition: border-color 0.2s;" onfocus="this.style.borderColor='#0ea5e9'" onblur="this.style.borderColor='#313135'">
+                    <input type="text" id="welcomeProjectNameInput" class="welcome-project-name" value="Nový projekt" placeholder="Např. Rodinný dům Praha…" style="background: #1c1c1f; border: 1px solid #313135; color: #ffffff; font-size: 14px; font-weight: 600; outline: none; transition: border-color 0.2s;" onfocus="this.style.borderColor='#9b88b4'" onblur="this.style.borderColor='#313135'">
                     <div class="welcome-name-buttons">
                         <button id="btnWelcomeCancelNaming" class="btn-cad" style="background: #252529; color: #a1a1aa; font-weight: bold; border: none;">Zrušit</button>
                         <button id="btnWelcomeConfirmNaming" class="btn-cad" style="background: #ef4444; color: #ffffff; font-weight: bold; box-shadow: 0 4px 12px rgba(239, 68, 68, 0.2); border: none;">Vytvořit</button>
@@ -726,7 +726,7 @@
             </form>
             </div></div><p id="accountFeedback" role="status" aria-live="polite" hidden></p>
             <div class="account-actions">
-                <a id="btnAccountAdmin" class="btn-cad" href="./admin.html" target="_blank" rel="noopener" hidden>Admin</a>
+                <a id="btnAccountAdmin" class="btn-cad" href="https://pzts.five.surf/admin.html" target="_blank" rel="noopener" hidden>Admin</a>
                 <button id="btnAccountSignOut" class="btn-cad" type="button">Odhlásit se</button>
             </div>
         </section>
@@ -1137,7 +1137,7 @@
                 <label for="cameraAngle">Zorný úhel (°)</label>
                 <input id="cameraAngle" type="number" min="10" max="180" step="1" required>
                 <label for="cameraRange">Dosah na výkresu (px)</label>
-                <input id="cameraRange" type="number" min="10" max="1000" step="1" required>
+                <input id="cameraRange" type="number" min="10" max="2000" step="1" required>
             </fieldset>
         </div>
     </div>
@@ -1191,6 +1191,6 @@
         <button type="button" data-tablet-action="delete" class="tool-danger"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M9 7V4h6v3M6 7l1 13h10l1-13m-8 3v7m4-7v7"/></svg></button>
         <button type="button" data-tablet-action="undo"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m9 4-5 5 5 5M4 9h9a6 6 0 0 1 6 6v2"/></svg></button>
     </div>
-    <script src="bootstrap.js?v=20261117-cctv-57"></script>
+    <script src="bootstrap.js?v=20261117-cctv-58"></script>
 </body>
 </html>

@@ -12,11 +12,14 @@ const COLORS = {
     acs_module: "#6d28d9",
     acs_reader: "#6d28d9",
     smoke: "#dc2626",
-    cctv_bullet: "#0284c7",
+    cctv_bullet: "#d77ca9",
     cctv_dome: "#0284c7",
     cctv_ptz: "#7c3aed",
-    cctv_nvr: "#2563eb",
+    cctv_nvr: "#9b88b4",
     cctv_poe: "#0f766e",
+    cctv_doorbell: "#9b88b4",
+    cctv_antenna: "#9b88b4",
+    cctv_receiver: "#9b88b4",
     panel: "#0ea5e9",       
     keypad: "#3f3f46",      
     expander: "#0ea5e9",    
@@ -25,11 +28,13 @@ const COLORS = {
     text: "#ffffff"         
 };
 
-const NEW_TOOLBAR_DEVICE_TYPES = window.goomProduct === 'CCTV' ? [] : ['acs_module', 'acs_reader', 'smoke'];
+const NEW_TOOLBAR_DEVICE_TYPES = window.goomProduct === 'CCTV'
+    ? ['cctv_doorbell', 'acs_reader', 'cctv_antenna', 'cctv_receiver']
+    : ['acs_module', 'acs_reader', 'smoke'];
 const CCTV_CAMERAS = {
-    cctv_bullet: { label: 'Válcová kamera', angle: 65, range: 300 },
-    cctv_dome: { label: 'Kopulová kamera', angle: 100, range: 220 },
-    cctv_ptz: { label: 'PTZ kamera', angle: 45, range: 450 }
+    cctv_bullet: { label: 'Válcová kamera', angle: 65, range: 600 },
+    cctv_dome: { label: 'Kopulová kamera', angle: 100, range: 440 },
+    cctv_ptz: { label: 'PTZ kamera', angle: 45, range: 900 }
 };
 const CCTV_CAMERA_LENSES = [
     { id: '2.8', label: '2.8 mm', fov: [100, 110], ranges: [6, 12, 60] },
@@ -49,7 +54,11 @@ function getCameraLensAngle(type, lensId) {
 const CCTV_DEVICE_LABELS = {
     ...Object.fromEntries(Object.entries(CCTV_CAMERAS).map(([type, camera]) => [type, camera.label])),
     cctv_nvr: 'Síťový videorekordér (NVR)',
-    cctv_poe: 'PoE přepínač'
+    cctv_poe: 'PoE přepínač',
+    cctv_doorbell: 'Videozvonek ACS',
+    acs_reader: 'Čtečka přístupových karet',
+    cctv_antenna: 'Anténa',
+    cctv_receiver: 'Přijímač signálu'
 };
 const ADDITIONAL_DEVICE_LABELS = window.goomProduct === 'CCTV' ? CCTV_DEVICE_LABELS : {
     acs_module: 'Modul přístupového systému (ACS)',
@@ -80,7 +89,7 @@ function getCameraOptics(device) {
     const defaults = CCTV_CAMERAS[device.type];
     return {
         angle: Number.isFinite(device.cameraAngle) ? Math.min(180, Math.max(10, Math.round(device.cameraAngle))) : getCameraLensAngle(device.type, device.lensId),
-        range: Number.isFinite(device.cameraRange) ? Math.min(1000, Math.max(10, Math.round(device.cameraRange))) : defaults.range
+        range: Number.isFinite(device.cameraRange) ? Math.min(2000, Math.max(10, Math.round(device.cameraRange))) : defaults.range
     };
 }
 function hasDeviceCoverage(device) {

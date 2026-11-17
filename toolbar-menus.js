@@ -27,7 +27,8 @@ const defaultToolbarMenu = {
     deviceTypes: toolbarMenuTypes.map(item => item.type)
 };
 const proToolbarLabels = APP_PRODUCT === 'CCTV' ? {
-    cctv_bullet: 'CAM', cctv_dome: 'DOME', cctv_ptz: 'PTZ', cctv_nvr: 'NVR', cctv_poe: 'PoE'
+    cctv_bullet: 'CAM', cctv_dome: 'DOME', cctv_ptz: 'PTZ', cctv_nvr: 'NVR', cctv_poe: 'PoE',
+    cctv_doorbell: 'ACS', acs_reader: 'CARD', cctv_antenna: 'ANT', cctv_receiver: 'RX'
 } : {
     panel: 'EZS', expander: 'EXP', abax: 'RF', keypad: 'KEY', pir: 'PIR', pir_wl: 'PIR+',
     magnet: 'MC', magnet_wl: 'MC+', glassbreak: 'GB', panic: 'SOS', siren: 'SIR'

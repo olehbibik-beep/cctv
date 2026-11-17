@@ -125,7 +125,7 @@ function drawPIRCoverage(ctx, floor, force = false) {
             if(!path){path=new Path2D();path.moveTo(points[0].x,points[0].y);for(let i=1;i<points.length;i++)path.lineTo(points[i].x,points[i].y);path.closePath();pirCoveragePathCache.set(points,path);}
         }
         ctx.fillStyle = APP_PRODUCT === 'CCTV'
-            ? 'rgba(14, 165, 233, 0.22)'
+            ? device.type === 'cctv_bullet' ? 'rgba(215, 124, 169, 0.24)' : 'rgba(14, 165, 233, 0.22)'
             : device.type === 'glassbreak'
             ? 'rgba(56, 189, 248, 0.2)'
             : 'rgba(34, 197, 94, 0.18)';

@@ -133,7 +133,15 @@ function drawCctvDevice(ctx, type, sMult) {
     ctx.strokeStyle = COLORS[type];
     ctx.fillStyle = '#ffffff';
     ctx.beginPath();
-    if (type === 'cctv_bullet') {
+    if (type === 'cctv_doorbell') {
+        ctx.roundRect(-10, -17, 20, 34, 4);
+    } else if (type === 'acs_reader') {
+        ctx.roundRect(-13, -15, 26, 30, 4);
+    } else if (type === 'cctv_antenna') {
+        ctx.moveTo(-12, 15); ctx.lineTo(0, -3); ctx.lineTo(12, 15); ctx.closePath();
+    } else if (type === 'cctv_receiver') {
+        ctx.roundRect(-18, -7, 36, 21, 4);
+    } else if (type === 'cctv_bullet') {
         ctx.roundRect(-17, -8, 24, 16, 3);
         ctx.moveTo(7, -4); ctx.lineTo(15, -9); ctx.lineTo(15, 9); ctx.lineTo(7, 4); ctx.closePath();
     } else if (Object.hasOwn(CCTV_CAMERAS, type)) {
@@ -145,7 +153,23 @@ function drawCctvDevice(ctx, type, sMult) {
     ctx.fill();
     ctx.stroke();
     ctx.fillStyle = COLORS[type];
-    if (type === 'cctv_nvr' || type === 'cctv_poe') {
+    if (type === 'cctv_doorbell') {
+        ctx.beginPath(); ctx.arc(0, -7, 4, 0, Math.PI * 2); ctx.fill();
+        ctx.beginPath(); ctx.arc(0, 8, 3, 0, Math.PI * 2); ctx.stroke();
+    } else if (type === 'acs_reader') {
+        ctx.strokeRect(-7, -5, 14, 10);
+        ctx.beginPath(); ctx.moveTo(-7, -1); ctx.lineTo(7, -1); ctx.stroke();
+    } else if (type === 'cctv_antenna') {
+        ctx.beginPath(); ctx.moveTo(0, 15); ctx.lineTo(0, -13); ctx.stroke();
+        ctx.beginPath(); ctx.arc(0, -13, 2, 0, Math.PI * 2); ctx.fill();
+        ctx.beginPath(); ctx.arc(0, -13, 8, -Math.PI / 3, Math.PI / 3);
+        ctx.moveTo(-4, -20); ctx.arc(0, -13, 8, Math.PI * 2 / 3, Math.PI * 4 / 3); ctx.stroke();
+    } else if (type === 'cctv_receiver') {
+        ctx.beginPath(); ctx.moveTo(-11, -7); ctx.lineTo(-15, -18);
+        ctx.moveTo(11, -7); ctx.lineTo(15, -18); ctx.stroke();
+        ctx.beginPath(); ctx.arc(-9, 4, 2, 0, Math.PI * 2); ctx.fill();
+        ctx.beginPath(); ctx.moveTo(-2, 4); ctx.lineTo(10, 4); ctx.stroke();
+    } else if (type === 'cctv_nvr' || type === 'cctv_poe') {
         ctx.font = 'bold 10px monospace';
         ctx.fillText(type === 'cctv_nvr' ? 'NVR' : 'PoE', 0, 0);
     } else if (type !== 'cctv_bullet') {
