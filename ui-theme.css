@@ -60,7 +60,7 @@ body::after {
     object-fit: cover; object-position: right center; opacity: 1;
     filter: none; mask-image: none;
 }
-#welcomeIntroVideo { position: absolute; inset: 0; opacity: 0; transition: opacity 180ms ease-out; }
+#welcomeIntroVideo { position: absolute; inset: 0; opacity: 0; transform: scale(1.2); transform-origin: right center; transition: opacity 180ms ease-out; }
 #welcomeModal.is-intro-playing #welcomeIntroVideo { opacity: 1; }
 @media (prefers-reduced-motion: reduce) {
     #welcomeIntroVideo { transition: none; }
