@@ -149,7 +149,8 @@ function resetDetectorSearchResults() {
 }
 
 detectorSearchButton.addEventListener('click', () => {
-    if (!window.hasProAccess?.() || !isSystemReady || isOverviewMode) return;
+    if(!window.hasProAccess?.()){window.requestProUpgrade?.();return;}
+    if (!isSystemReady || isOverviewMode) return;
     resetDetectorSearchResults();
     detectorSearchBus.value = Number(loopSelect.value) || 1;
     detectorSearchNumber.value = '';
@@ -201,8 +202,10 @@ detectorSearchForm.addEventListener('submit', event => {
 });
 
 function syncDetectorSearchAccess() {
-    detectorSearchButton.hidden = !window.hasProAccess?.();
-    if (detectorSearchButton.hidden) {
+    const locked=!window.hasProAccess?.();
+    detectorSearchButton.hidden = false;
+    detectorSearchButton.classList.toggle('pro-lock',locked);detectorSearchButton.setAttribute('data-project-locked',String(locked));
+    if (locked) {
         closeDetectorSearch();
         clearDetectorSearchHighlight();
     }
